@@ -1,14 +1,12 @@
 package SchoolCommunity.SchoolCommunityBackendNew.services.serviceImpl;
 
 import SchoolCommunity.SchoolCommunityBackendNew.entity.Status;
+import SchoolCommunity.SchoolCommunityBackendNew.mappers.CommunityMapper;
+import SchoolCommunity.SchoolCommunityBackendNew.mappers.CorporationMapper;
 import SchoolCommunity.SchoolCommunityBackendNew.mappers.LogMapper;
 import SchoolCommunity.SchoolCommunityBackendNew.mappers.UserInfoMapper;
-import SchoolCommunity.SchoolCommunityBackendNew.model.Log;
-import SchoolCommunity.SchoolCommunityBackendNew.model.LogExample;
-import SchoolCommunity.SchoolCommunityBackendNew.model.UserInfo;
-import SchoolCommunity.SchoolCommunityBackendNew.model.UserInfoExample;
+import SchoolCommunity.SchoolCommunityBackendNew.model.*;
 import SchoolCommunity.SchoolCommunityBackendNew.services.UserService;
-import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,8 +26,14 @@ public class UserServicesImpl implements UserService {
     @Autowired
     private UserInfoMapper userInfoMapper;
 
+    @Autowired
+    private CommunityMapper communityMapper;
+
+    @Autowired
+    private CorporationMapper corporationMapper;
+
     @Override
-    public String login(String userName, String pwd) {
+    public Map<String, String> login(String userName, String pwd) {
         Map<String, String> status = new HashMap<>();
 
         LogExample userLogCriteria = new LogExample();
@@ -44,7 +48,8 @@ public class UserServicesImpl implements UserService {
         if (userLogList.isEmpty()) {
             status.put("STATUS", Status.NOTEXISTS.getName());
             status.put("TYPE", null);
-            return JSON.toJSONString(status);
+            status.put("USERID", null);
+            return status;
         }
 
         Log user = userLogList.get(0);
@@ -57,11 +62,13 @@ public class UserServicesImpl implements UserService {
         if (userLogStatus != 1) {
             status.put("STATUS", Status.PWDERROR.getName());
             status.put("TYPE", null);
-            return JSON.toJSONString(status);
+            status.put("USERID", null);
+            return status;
         } else {
             status.put("STATUS", Status.SUCCESS.getName());
-            status.put("TYPE", null);
-            return JSON.toJSONString(status);
+            status.put("TYPE", userInfo.getRoleid().toString());
+            status.put("USERID", user.getUserid().toString());
+            return status;
         }
     }
 
@@ -94,7 +101,87 @@ public class UserServicesImpl implements UserService {
         } else {
             registerStatus = Status.FAILED;
         }
-
         return registerStatus;
+    }
+
+    @Override
+    public Status isVerified(long userid) {
+        Status status = Status.NOTEXISTS;
+        UserInfoExample userInfoExample = new UserInfoExample();
+        UserInfoExample.Criteria criteria = userInfoExample.createCriteria();
+        criteria.andUseridEqualTo(userid);
+
+        List<UserInfo> list = userInfoMapper.selectByExample(userInfoExample);
+        if (!list.isEmpty()) {
+            int verfyStatus = list.get(0).getStatus();
+            if (verfyStatus == 0) {
+                status = Status.VERIFIED;
+            } else {
+                status = Status.NOPERMISSION;
+            }
+        }
+
+        return status;
+    }
+
+    @Override
+    public Status verifyRequest(long userid, Community community) {
+        UserInfoExample userInfoExample = new UserInfoExample();
+        UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
+        userInfoCriteria.andUseridEqualTo(userid);
+        List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
+
+        if (!userInfoList.isEmpty()) {
+            UserInfo userInfo = userInfoList.get(0);
+            userInfo.setSent(1);
+
+            int row = communityMapper.insert(community);
+            if (row != 1) {
+                return Status.FAILED;
+            }
+            row = userInfoMapper.updateByExampleSelective(userInfo, userInfoExample);
+            if (row != 1) {
+                return Status.FAILED;
+            }
+            return Status.SUCCESS;
+        }
+        return Status.NOTEXISTS;
+    }
+
+    @Override
+    public Status verifyRequest(long userid, Corporation corporation) {
+        UserInfoExample userInfoExample = new UserInfoExample();
+        UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
+        userInfoCriteria.andUseridEqualTo(userid);
+        List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
+
+        if (!userInfoList.isEmpty()) {
+            UserInfo userInfo = userInfoList.get(0);
+            userInfo.setSent(1);
+
+            int row = corporationMapper.insert(corporation);
+            if (row != 1) {
+                return Status.FAILED;
+            }
+            row = userInfoMapper.updateByExampleSelective(userInfo, userInfoExample);
+            if (row != 1) {
+                return Status.FAILED;
+            }
+
+            return Status.SUCCESS;
+        }
+        return Status.NOTEXISTS;
+    }
+
+    @Override
+    public UserInfo selectByUserid(long userid) {
+        UserInfoExample userInfoExample = new UserInfoExample();
+        UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
+        userInfoCriteria.andUseridEqualTo(userid);
+        List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
+        if (!userInfoList.isEmpty()) {
+            return userInfoList.get(0);
+        }
+        return null;
     }
 }

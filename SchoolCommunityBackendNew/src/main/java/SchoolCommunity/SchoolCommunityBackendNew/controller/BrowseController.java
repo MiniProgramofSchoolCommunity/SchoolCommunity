@@ -21,7 +21,7 @@ public class BrowseController {
     @Autowired
     private BrowseService browseService;
 
-    // todo 获取活动简略信息
+    // todo 获取活动简略信息处理
     @RequestMapping(value = "/getActivityList.do", method = RequestMethod.GET)
     @ResponseBody
     public String getActivityList(HttpServletRequest request) throws ServletException {
@@ -40,4 +40,5 @@ public class BrowseController {
         PageInfo<ActivityBrief> briefPageInfo = browseService.getPageInfo(pageNum, pageSize);
         return JSON.toJSONString(briefPageInfo);
     }
+    // todo 活动详细信息请求
 }

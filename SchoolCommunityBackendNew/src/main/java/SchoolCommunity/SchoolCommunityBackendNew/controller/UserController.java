@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,18 +32,17 @@ public class UserController {
 
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
     @ResponseBody
-    public String login(HttpServletRequest request) throws ServletException {
+    public String login(@RequestBody JSONObject jsonParams) throws ServletException {
         Log userLogInfo = new Log();
         Map<String, String> logInStatus;
         Status userServiceStatus;
-        userLogInfo.setUsername(request.getParameter("username"));
+        userLogInfo.setUsername(jsonParams.getString("username"));
 
         // encryt  the pwd using java MessageDigest
-        String rawPwd = request.getParameter("pwd");
+        String rawPwd = jsonParams.getString("pwd");
         String pwd = Encrypt.encrypt(rawPwd);
         userLogInfo.setPwd(pwd);
 
-        System.out.println(request.getHeader("Content-Type"));
         // fixme 修改后台加密为数据库加密
         if (userLogInfo.getPwd() != null && userLogInfo.getUsername() != null) {
             logInStatus = userService.login(userLogInfo.getUsername(), userLogInfo.getPwd());
@@ -65,16 +63,16 @@ public class UserController {
 
     @RequestMapping(value = "register.do", method = RequestMethod.POST)
     @ResponseBody
-    public String register(HttpServletRequest request) throws ServletException {
+    public String register(@RequestBody JSONObject jsonParams) throws ServletException {
         Log userRegisterLog = new Log();
         Status registerStatus;
-        userRegisterLog.setUsername(request.getParameter("username"));
-        String rawpwd = request.getParameter("pwd");
+        userRegisterLog.setUsername(jsonParams.getString("username"));
+        String rawpwd = jsonParams.getString("pwd");
         String pwd = Encrypt.encrypt(rawpwd);
         userRegisterLog.setPwd(pwd);
         UserInfo userRegisterUserInfo = new UserInfo();
-        userRegisterUserInfo.setEmail(request.getParameter("email"));
-        Integer type = Integer.valueOf(request.getParameter("itype"));
+        userRegisterUserInfo.setEmail(jsonParams.getString("email"));
+        Integer type = jsonParams.getInteger("itype");
         userRegisterUserInfo.setRoleid(type);
 
         // todo 验证email合法性

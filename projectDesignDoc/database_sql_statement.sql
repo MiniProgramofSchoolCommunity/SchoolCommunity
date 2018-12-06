@@ -1,6 +1,6 @@
--- ÏÈÊ¹ÓÃ³¬¼¶ÓÃ»§ÔÚ¸ÃdatabaseÏÂÌí¼Ó²å¼ş
+ï»¿-- å…ˆä½¿ç”¨è¶…çº§ç”¨æˆ·åœ¨è¯¥databaseä¸‹æ·»åŠ æ’ä»¶
 -- create extension pgcrypto;
--- ¿É²»Ê¹ÓÃ¸Ã²å¼ş£¬ÔÚjavaºóÌ¨´¦Àí
+-- å¯ä¸ä½¿ç”¨è¯¥æ’ä»¶ï¼Œåœ¨javaåå°å¤„ç†
 create table log(
 userid serial8,
 username varchar(20),
@@ -22,7 +22,8 @@ status int not null default 0,
 sent int not null default 0,
 foreign key(userid) references log(userid),
 foreign key(roleid) references role(roleid),
-unique(email)
+unique(email),
+primary key(userid)
 );
 
 create table community(
@@ -115,13 +116,13 @@ token text not null,
 primary key(token)
 );
 
-insert into role(roleid,rolename) values(0,'³¬¹Ü');
-insert into role(roleid,rolename) values(1,'ÉçÍÅÁª');
-insert into role(roleid,rolename) values(2,'ÉçÍÅ');
-insert into role(roleid,rolename) values(3,'ÆóÒµ');
+insert into role(roleid,rolename) values(0,'è¶…ç®¡');
+insert into role(roleid,rolename) values(1,'ç¤¾å›¢è”');
+insert into role(roleid,rolename) values(2,'ç¤¾å›¢');
+insert into role(roleid,rolename) values(3,'ä¼ä¸š');
 
-insert into authority(authorityid,authorityname) values(0,'·¢²¼');
-insert into authority(authorityid,authorityname) values(1,'É¾³ı');
-insert into authority(authorityid,authorityname) values(2,'ä¯ÀÀÏêÏ¸ĞÅÏ¢');
-insert into authority(authorityid,authorityname) values(3,'ÉóºËÉçÍÅ');
-insert into authority(authorityid,authorityname) values(4,'ÉóºËÆóÒµ');
+insert into authority(authorityid,authorityname) values(0,'å‘å¸ƒ');
+insert into authority(authorityid,authorityname) values(1,'åˆ é™¤');
+insert into authority(authorityid,authorityname) values(2,'æµè§ˆè¯¦ç»†ä¿¡æ¯');
+insert into authority(authorityid,authorityname) values(3,'å®¡æ ¸ç¤¾å›¢');
+insert into authority(authorityid,authorityname) values(4,'å®¡æ ¸ä¼ä¸š');

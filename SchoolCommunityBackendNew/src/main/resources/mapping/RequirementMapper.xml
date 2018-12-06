@@ -256,4 +256,769 @@
       contactsnum = #{contactsnum,jdbcType=VARCHAR}
     where activityid = #{activityid,jdbcType=BIGINT}
   </update>
+  <resultMap id="BaseResultMap" type="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    <id column="activityid" jdbcType="BIGINT" property="activityid" />
+    <result column="requirement" jdbcType="VARCHAR" property="requirement" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+    <result column="slevel" jdbcType="INTEGER" property="slevel" />
+    <result column="sleadername" jdbcType="VARCHAR" property="sleadername" />
+    <result column="sleadernum" jdbcType="VARCHAR" property="sleadernum" />
+    <result column="contactsname" jdbcType="VARCHAR" property="contactsname" />
+    <result column="contactsnum" jdbcType="VARCHAR" property="contactsnum" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    activityid, requirement, sname, slevel, sleadername, sleadernum, contactsname, contactsnum
+  </sql>
+  <select id="selectByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.RequirementExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from requirement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from requirement
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from requirement
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.RequirementExample">
+    delete from requirement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    insert into requirement (activityid, requirement, sname, 
+      slevel, sleadername, sleadernum, 
+      contactsname, contactsnum)
+    values (#{activityid,jdbcType=BIGINT}, #{requirement,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
+      #{slevel,jdbcType=INTEGER}, #{sleadername,jdbcType=VARCHAR}, #{sleadernum,jdbcType=VARCHAR}, 
+      #{contactsname,jdbcType=VARCHAR}, #{contactsnum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    insert into requirement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityid != null">
+        activityid,
+      </if>
+      <if test="requirement != null">
+        requirement,
+      </if>
+      <if test="sname != null">
+        sname,
+      </if>
+      <if test="slevel != null">
+        slevel,
+      </if>
+      <if test="sleadername != null">
+        sleadername,
+      </if>
+      <if test="sleadernum != null">
+        sleadernum,
+      </if>
+      <if test="contactsname != null">
+        contactsname,
+      </if>
+      <if test="contactsnum != null">
+        contactsnum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityid != null">
+        #{activityid,jdbcType=BIGINT},
+      </if>
+      <if test="requirement != null">
+        #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null">
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="slevel != null">
+        #{slevel,jdbcType=INTEGER},
+      </if>
+      <if test="sleadername != null">
+        #{sleadername,jdbcType=VARCHAR},
+      </if>
+      <if test="sleadernum != null">
+        #{sleadernum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsname != null">
+        #{contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsnum != null">
+        #{contactsnum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.RequirementExample" resultType="java.lang.Long">
+    select count(*) from requirement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update requirement
+    <set>
+      <if test="record.activityid != null">
+        activityid = #{record.activityid,jdbcType=BIGINT},
+      </if>
+      <if test="record.requirement != null">
+        requirement = #{record.requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sname != null">
+        sname = #{record.sname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.slevel != null">
+        slevel = #{record.slevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.sleadername != null">
+        sleadername = #{record.sleadername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sleadernum != null">
+        sleadernum = #{record.sleadernum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsname != null">
+        contactsname = #{record.contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsnum != null">
+        contactsnum = #{record.contactsnum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update requirement
+    set activityid = #{record.activityid,jdbcType=BIGINT},
+      requirement = #{record.requirement,jdbcType=VARCHAR},
+      sname = #{record.sname,jdbcType=VARCHAR},
+      slevel = #{record.slevel,jdbcType=INTEGER},
+      sleadername = #{record.sleadername,jdbcType=VARCHAR},
+      sleadernum = #{record.sleadernum,jdbcType=VARCHAR},
+      contactsname = #{record.contactsname,jdbcType=VARCHAR},
+      contactsnum = #{record.contactsnum,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    update requirement
+    <set>
+      <if test="requirement != null">
+        requirement = #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null">
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="slevel != null">
+        slevel = #{slevel,jdbcType=INTEGER},
+      </if>
+      <if test="sleadername != null">
+        sleadername = #{sleadername,jdbcType=VARCHAR},
+      </if>
+      <if test="sleadernum != null">
+        sleadernum = #{sleadernum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsname != null">
+        contactsname = #{contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsnum != null">
+        contactsnum = #{contactsnum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    update requirement
+    set requirement = #{requirement,jdbcType=VARCHAR},
+      sname = #{sname,jdbcType=VARCHAR},
+      slevel = #{slevel,jdbcType=INTEGER},
+      sleadername = #{sleadername,jdbcType=VARCHAR},
+      sleadernum = #{sleadernum,jdbcType=VARCHAR},
+      contactsname = #{contactsname,jdbcType=VARCHAR},
+      contactsnum = #{contactsnum,jdbcType=VARCHAR}
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    <id column="activityid" jdbcType="BIGINT" property="activityid" />
+    <result column="requirement" jdbcType="VARCHAR" property="requirement" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+    <result column="slevel" jdbcType="INTEGER" property="slevel" />
+    <result column="sleadername" jdbcType="VARCHAR" property="sleadername" />
+    <result column="sleadernum" jdbcType="VARCHAR" property="sleadernum" />
+    <result column="contactsname" jdbcType="VARCHAR" property="contactsname" />
+    <result column="contactsnum" jdbcType="VARCHAR" property="contactsnum" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    activityid, requirement, sname, slevel, sleadername, sleadernum, contactsname, contactsnum
+  </sql>
+  <select id="selectByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.RequirementExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from requirement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from requirement
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from requirement
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.RequirementExample">
+    delete from requirement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    insert into requirement (activityid, requirement, sname, 
+      slevel, sleadername, sleadernum, 
+      contactsname, contactsnum)
+    values (#{activityid,jdbcType=BIGINT}, #{requirement,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
+      #{slevel,jdbcType=INTEGER}, #{sleadername,jdbcType=VARCHAR}, #{sleadernum,jdbcType=VARCHAR}, 
+      #{contactsname,jdbcType=VARCHAR}, #{contactsnum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    insert into requirement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityid != null">
+        activityid,
+      </if>
+      <if test="requirement != null">
+        requirement,
+      </if>
+      <if test="sname != null">
+        sname,
+      </if>
+      <if test="slevel != null">
+        slevel,
+      </if>
+      <if test="sleadername != null">
+        sleadername,
+      </if>
+      <if test="sleadernum != null">
+        sleadernum,
+      </if>
+      <if test="contactsname != null">
+        contactsname,
+      </if>
+      <if test="contactsnum != null">
+        contactsnum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityid != null">
+        #{activityid,jdbcType=BIGINT},
+      </if>
+      <if test="requirement != null">
+        #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null">
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="slevel != null">
+        #{slevel,jdbcType=INTEGER},
+      </if>
+      <if test="sleadername != null">
+        #{sleadername,jdbcType=VARCHAR},
+      </if>
+      <if test="sleadernum != null">
+        #{sleadernum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsname != null">
+        #{contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsnum != null">
+        #{contactsnum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.RequirementExample" resultType="java.lang.Long">
+    select count(*) from requirement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update requirement
+    <set>
+      <if test="record.activityid != null">
+        activityid = #{record.activityid,jdbcType=BIGINT},
+      </if>
+      <if test="record.requirement != null">
+        requirement = #{record.requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sname != null">
+        sname = #{record.sname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.slevel != null">
+        slevel = #{record.slevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.sleadername != null">
+        sleadername = #{record.sleadername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sleadernum != null">
+        sleadernum = #{record.sleadernum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsname != null">
+        contactsname = #{record.contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsnum != null">
+        contactsnum = #{record.contactsnum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update requirement
+    set activityid = #{record.activityid,jdbcType=BIGINT},
+      requirement = #{record.requirement,jdbcType=VARCHAR},
+      sname = #{record.sname,jdbcType=VARCHAR},
+      slevel = #{record.slevel,jdbcType=INTEGER},
+      sleadername = #{record.sleadername,jdbcType=VARCHAR},
+      sleadernum = #{record.sleadernum,jdbcType=VARCHAR},
+      contactsname = #{record.contactsname,jdbcType=VARCHAR},
+      contactsnum = #{record.contactsnum,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    update requirement
+    <set>
+      <if test="requirement != null">
+        requirement = #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null">
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="slevel != null">
+        slevel = #{slevel,jdbcType=INTEGER},
+      </if>
+      <if test="sleadername != null">
+        sleadername = #{sleadername,jdbcType=VARCHAR},
+      </if>
+      <if test="sleadernum != null">
+        sleadernum = #{sleadernum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsname != null">
+        contactsname = #{contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsnum != null">
+        contactsnum = #{contactsnum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    update requirement
+    set requirement = #{requirement,jdbcType=VARCHAR},
+      sname = #{sname,jdbcType=VARCHAR},
+      slevel = #{slevel,jdbcType=INTEGER},
+      sleadername = #{sleadername,jdbcType=VARCHAR},
+      sleadernum = #{sleadernum,jdbcType=VARCHAR},
+      contactsname = #{contactsname,jdbcType=VARCHAR},
+      contactsnum = #{contactsnum,jdbcType=VARCHAR}
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    <id column="activityid" jdbcType="BIGINT" property="activityid" />
+    <result column="requirement" jdbcType="VARCHAR" property="requirement" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+    <result column="slevel" jdbcType="INTEGER" property="slevel" />
+    <result column="sleadername" jdbcType="VARCHAR" property="sleadername" />
+    <result column="sleadernum" jdbcType="VARCHAR" property="sleadernum" />
+    <result column="contactsname" jdbcType="VARCHAR" property="contactsname" />
+    <result column="contactsnum" jdbcType="VARCHAR" property="contactsnum" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    activityid, requirement, sname, slevel, sleadername, sleadernum, contactsname, contactsnum
+  </sql>
+  <select id="selectByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.RequirementExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from requirement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from requirement
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from requirement
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.RequirementExample">
+    delete from requirement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    insert into requirement (activityid, requirement, sname, 
+      slevel, sleadername, sleadernum, 
+      contactsname, contactsnum)
+    values (#{activityid,jdbcType=BIGINT}, #{requirement,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, 
+      #{slevel,jdbcType=INTEGER}, #{sleadername,jdbcType=VARCHAR}, #{sleadernum,jdbcType=VARCHAR}, 
+      #{contactsname,jdbcType=VARCHAR}, #{contactsnum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    insert into requirement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityid != null">
+        activityid,
+      </if>
+      <if test="requirement != null">
+        requirement,
+      </if>
+      <if test="sname != null">
+        sname,
+      </if>
+      <if test="slevel != null">
+        slevel,
+      </if>
+      <if test="sleadername != null">
+        sleadername,
+      </if>
+      <if test="sleadernum != null">
+        sleadernum,
+      </if>
+      <if test="contactsname != null">
+        contactsname,
+      </if>
+      <if test="contactsnum != null">
+        contactsnum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityid != null">
+        #{activityid,jdbcType=BIGINT},
+      </if>
+      <if test="requirement != null">
+        #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null">
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="slevel != null">
+        #{slevel,jdbcType=INTEGER},
+      </if>
+      <if test="sleadername != null">
+        #{sleadername,jdbcType=VARCHAR},
+      </if>
+      <if test="sleadernum != null">
+        #{sleadernum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsname != null">
+        #{contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsnum != null">
+        #{contactsnum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.RequirementExample" resultType="java.lang.Long">
+    select count(*) from requirement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update requirement
+    <set>
+      <if test="record.activityid != null">
+        activityid = #{record.activityid,jdbcType=BIGINT},
+      </if>
+      <if test="record.requirement != null">
+        requirement = #{record.requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sname != null">
+        sname = #{record.sname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.slevel != null">
+        slevel = #{record.slevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.sleadername != null">
+        sleadername = #{record.sleadername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sleadernum != null">
+        sleadernum = #{record.sleadernum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsname != null">
+        contactsname = #{record.contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsnum != null">
+        contactsnum = #{record.contactsnum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update requirement
+    set activityid = #{record.activityid,jdbcType=BIGINT},
+      requirement = #{record.requirement,jdbcType=VARCHAR},
+      sname = #{record.sname,jdbcType=VARCHAR},
+      slevel = #{record.slevel,jdbcType=INTEGER},
+      sleadername = #{record.sleadername,jdbcType=VARCHAR},
+      sleadernum = #{record.sleadernum,jdbcType=VARCHAR},
+      contactsname = #{record.contactsname,jdbcType=VARCHAR},
+      contactsnum = #{record.contactsnum,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    update requirement
+    <set>
+      <if test="requirement != null">
+        requirement = #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null">
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="slevel != null">
+        slevel = #{slevel,jdbcType=INTEGER},
+      </if>
+      <if test="sleadername != null">
+        sleadername = #{sleadername,jdbcType=VARCHAR},
+      </if>
+      <if test="sleadernum != null">
+        sleadernum = #{sleadernum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsname != null">
+        contactsname = #{contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsnum != null">
+        contactsnum = #{contactsnum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Requirement">
+    update requirement
+    set requirement = #{requirement,jdbcType=VARCHAR},
+      sname = #{sname,jdbcType=VARCHAR},
+      slevel = #{slevel,jdbcType=INTEGER},
+      sleadername = #{sleadername,jdbcType=VARCHAR},
+      sleadernum = #{sleadernum,jdbcType=VARCHAR},
+      contactsname = #{contactsname,jdbcType=VARCHAR},
+      contactsnum = #{contactsnum,jdbcType=VARCHAR}
+    where activityid = #{activityid,jdbcType=BIGINT}
+  </update>
 </mapper>

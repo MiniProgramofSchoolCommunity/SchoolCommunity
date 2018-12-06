@@ -1,9 +1,8 @@
 package SchoolCommunity.SchoolCommunityBackendNew.services.serviceImpl;
 
 import SchoolCommunity.SchoolCommunityBackendNew.entity.ActivityBrief;
-import SchoolCommunity.SchoolCommunityBackendNew.mappers.ActivityBasicInfoMapper;
-import SchoolCommunity.SchoolCommunityBackendNew.mappers.CommunityMapper;
-import SchoolCommunity.SchoolCommunityBackendNew.mappers.CorporationMapper;
+import SchoolCommunity.SchoolCommunityBackendNew.entity.ActivityDetail;
+import SchoolCommunity.SchoolCommunityBackendNew.mappers.*;
 import SchoolCommunity.SchoolCommunityBackendNew.model.*;
 import SchoolCommunity.SchoolCommunityBackendNew.services.BrowseService;
 import com.github.pagehelper.PageHelper;
@@ -24,6 +23,12 @@ public class BrowseServiceImpl implements BrowseService {
 
     @Autowired
     private CorporationMapper corporationMapper;
+
+    @Autowired
+    private RequirementMapper requirementMapper;
+
+    @Autowired
+    private ActivityNeededMapper activityNeededMapper;
 
     @Override
     public ArrayList<ActivityBrief> getActivityListByPage(int pageNum, int pageSize) {
@@ -85,6 +90,56 @@ public class BrowseServiceImpl implements BrowseService {
 
     @Override
     public PageInfo<ActivityBrief> getPageInfo(int pageNum, int pageSize) {
+
         return null;
+    }
+
+    @Override
+    public ActivityDetail getActivityDetail(long activityId, int type) {
+        ActivityBasicInfo activityBasicInfo = activityBasicInfoMapper.selectByPrimaryKey(activityId);
+        ActivityDetail activityDetail = null;
+        if (activityBasicInfo != null) {
+            activityDetail = new ActivityDetail();
+            if (type == 0) {
+                Requirement requirement = requirementMapper.selectByPrimaryKey(activityId);
+                if (requirement != null) {
+                    activityDetail.setActivityAddress(activityBasicInfo.getActivityaddress());
+                    activityDetail.setActivityId(activityBasicInfo.getActivityid());
+                    activityDetail.setActivityIntro(activityBasicInfo.getActivityintro());
+                    activityDetail.setActivityName(activityBasicInfo.getActivityname());
+                    activityDetail.setContactsName(requirement.getContactsname());
+                    activityDetail.setContactsNum(requirement.getContactsnum());
+                    activityDetail.setDate(activityBasicInfo.getDate());
+                    activityDetail.setLeaderName(requirement.getSleadername());
+                    activityDetail.setLeaderNum(requirement.getSleadernum());
+                    activityDetail.setLevel(requirement.getSlevel());
+                    activityDetail.setRequirementOfSponsorship(requirement.getRequirement());
+                    activityDetail.setTime(activityBasicInfo.getTime());
+                    activityDetail.setSponsor(requirement.getSname());
+                    activityDetail.setType(0);
+                }
+            } else if (type == 1) {
+                ActivityNeeded activityNeeded = activityNeededMapper.selectByPrimaryKey(activityId);
+                if (activityNeeded != null) {
+                    activityDetail.setActivityAddress(activityBasicInfo.getActivityaddress());
+                    activityDetail.setActivityId(activityBasicInfo.getActivityid());
+                    activityDetail.setActivityIntro(activityBasicInfo.getActivityintro());
+                    activityDetail.setActivityName(activityBasicInfo.getActivityname());
+                    activityDetail.setContactsName(activityNeeded.getContactsname());
+                    activityDetail.setContactsNum(activityNeeded.getContactsnum());
+                    activityDetail.setDate(activityBasicInfo.getDate());
+                    activityDetail.setLeaderName(activityNeeded.getCleadername());
+                    activityDetail.setLeaderNum(activityNeeded.getCleadernum());
+                    activityDetail.setTime(activityBasicInfo.getTime());
+                    activityDetail.setSponsor(activityNeeded.getCname());
+                    activityDetail.setType(1);
+                    activityDetail.setRequirementOfActivity(activityNeeded.getRequirement());
+                    activityDetail.setSponsorshipIntro(activityNeeded.getSponsorship());
+                }
+            } else {
+                activityDetail = null;
+            }
+        }
+        return activityDetail;
     }
 }

@@ -126,20 +126,15 @@ public class UserServicesImpl implements UserService {
 
     @Override
     public Status verifyRequest(long userid, Community community) {
-        UserInfoExample userInfoExample = new UserInfoExample();
-        UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
-        userInfoCriteria.andUseridEqualTo(userid);
-        List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
+        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userid);
 
-        if (!userInfoList.isEmpty()) {
-            UserInfo userInfo = userInfoList.get(0);
+        if (userInfo != null) {
             userInfo.setSent(1);
-
             int row = communityMapper.insert(community);
             if (row != 1) {
                 return Status.FAILED;
             }
-            row = userInfoMapper.updateByExampleSelective(userInfo, userInfoExample);
+            row = userInfoMapper.updateByPrimaryKeySelective(userInfo);
             if (row != 1) {
                 return Status.FAILED;
             }
@@ -150,38 +145,20 @@ public class UserServicesImpl implements UserService {
 
     @Override
     public Status verifyRequest(long userid, Corporation corporation) {
-        UserInfoExample userInfoExample = new UserInfoExample();
-        UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
-        userInfoCriteria.andUseridEqualTo(userid);
-        List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
-
-        if (!userInfoList.isEmpty()) {
-            UserInfo userInfo = userInfoList.get(0);
+        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userid);
+        if (userInfo != null) {
             userInfo.setSent(1);
-
             int row = corporationMapper.insert(corporation);
             if (row != 1) {
                 return Status.FAILED;
             }
-            row = userInfoMapper.updateByExampleSelective(userInfo, userInfoExample);
+            row = userInfoMapper.updateByPrimaryKeySelective(userInfo);
             if (row != 1) {
                 return Status.FAILED;
             }
-
             return Status.SUCCESS;
         }
         return Status.NOTEXISTS;
     }
 
-    @Override
-    public UserInfo selectByUserid(long userid) {
-        UserInfoExample userInfoExample = new UserInfoExample();
-        UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
-        userInfoCriteria.andUseridEqualTo(userid);
-        List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
-        if (!userInfoList.isEmpty()) {
-            return userInfoList.get(0);
-        }
-        return null;
-    }
 }

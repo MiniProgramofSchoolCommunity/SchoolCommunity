@@ -19,5 +19,4 @@ public interface UserService {
 
     Status verifyRequest(long userid, Corporation corporation);
 
-    UserInfo selectByUserid(long userid);
 }

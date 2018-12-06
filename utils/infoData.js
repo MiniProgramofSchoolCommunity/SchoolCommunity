@@ -23,7 +23,7 @@ module.exports={
 //   }
 //   return result || {}
 // }
-function allInfo(){
+function newInfo(){
   var list={
     info:[
       {
@@ -62,11 +62,47 @@ function allInfo(){
         "community_relater": "wht",
         "community_leader": "stt"
       },
+      {
+        "id": 5,
+        "requirement": "需要10000元赞助",
+        "images": "/pages/images/interprise.jpg",
+        "community_name": "huawei俱乐部",
+        "level": "院级",
+        "community_relater": "wht",
+        "community_leader": "stt"
+      },
+      {
+        "id": 4,
+        "requirement": "需要3000元赞助",
+        "images": "/pages/images/interprise.jpg",
+        "community_name": "huawei俱乐部",
+        "level": "院级",
+        "community_relater": "wht",
+        "community_leader": "stt"
+      },
+      {
+        "id": 4,
+        "requirement": "需要3000元赞助",
+        "images": "/pages/images/interprise.jpg",
+        "community_name": "huawei俱乐部",
+        "level": "院级",
+        "community_relater": "wht",
+        "community_leader": "stt"
+      },
+      {
+        "id": 4,
+        "requirement": "需要3000元赞助",
+        "images": "/pages/images/interprise.jpg",
+        "community_name": "huawei俱乐部",
+        "level": "院级",
+        "community_relater": "wht",
+        "community_leader": "stt"
+      },
     ]}
-  return list;
+  return list.info;
   }
   
-var info_list=allInfo();
+//var info_list=allInfo();
 // function newInfo(){
 //   var result=[];
 // }
@@ -86,13 +122,13 @@ var info_list=allInfo();
 //   }
 //   return result || {}
 // }
-function newInfo(){
-  var result=[];
-  for(let i=0;i<info_list.info.length;i++){
-    result.push(info_list.info[i]);
-  }
-  return result || {}
-}
+// function newInfo(){
+//   var result=[];
+//   for(let i=0;i<info_list.info.length;i++){
+//     result.push(info_list.info[i]);
+//   }
+//   return result || {}
+// }
 
 function get_info(id) {
   var result = [];

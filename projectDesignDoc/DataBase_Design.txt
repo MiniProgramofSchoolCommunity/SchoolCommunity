@@ -1,0 +1,59 @@
+赞助需求为一个关系
+活动需求为一个关系
+用户基本信息为一个关系
+基本权限为一个关系
+系统角色为一个关系
+角色权限为一个关系
+用户角色为一个关系
+用户和活动都有一个独一无二的ID辨别
+to be continued
+
+用户基本信息切分为登录关系和基本信息关系
+登录关系（userid,username,pwd）主键为userid，unique key username
+用户基本信息（userid,email,sent,role,status）外码为userid，unique key email
+社团用户信息（userid,sname,school,slevel,sintro,sleadername,sleaderidcard,sleadernum,contactsname,contactsnum）外码userid，unique key (sname,school) not null(userid,sname,school,slevel,sintro,sleadername,sleaderidcard,sleadernum)
+企业用户信息（userid,cname,address,cintro,cregisnum,cleadername,cleaderidcard,cleadernum,contactsname,contactsnum）外码userid，unique key (cregisnum,cname) not null(userid,cname,address,cintro,cregisnum,cleadername,cleaderidcard,cleadernum)
+
+基本权限表
+发起活动
+删除活动
+浏览活动详细页面
+审核用户
+取消认证
+（权限id，权限名称）
+
+系统角色
+企业
+社团
+社团联
+超管
+（角色id，角色名称）
+
+活动基本信息表
+活动id
+发布人userid、外码
+活动名称
+活动时间、地点
+活动内容简介
+活动类型
+
+赞助需求具体信息表
+活动id、外码
+需求简介
+社团名称、外码
+社团等级、外码
+社团联系人名称、号码、外码
+社团负责人名称、号码、外码
+
+活动需求具体信息表
+活动id、外码
+活动要求
+企业赞助简介
+企业名称、外码
+企业负责人名称、号码、外码
+企业联系人名称、号码、外码
+
+管理员表
+管理员id
+被管理用户id
+

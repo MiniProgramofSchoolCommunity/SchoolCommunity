@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<view class="index-body">
+  <swiper class='swiper' indicator-dots="true" autoplay="true" interval="3000" duration="1000" indicator-color="#e8e8e8" indicator-active-color="#a9dd3c">
+    <block wx:for="{{carousel}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image"/>
+      </swiper-item>
+    </block>
+  </swiper>
+   <view class='index-info'>
+    <view class='info-title'>信息</view>
+    <view class='info-detail'>
+       <navigator url='../info_detail/info_detail?id={{item.id}}' class='info-item' wx:for="{{newInfo}}">
+         <!-- <view><image wx:if="{{infoType==0}}" src='{{item.images}}' class='info-image'/></view> -->
+         <view wx:if="{{item.infoType==0}}"><image src=''></image></view>
+         <view wx:if="{{item.infoType==1}}"><image src=''></image></view>
+        <!-- <view class='detail_info'> -->
+        <view>
+          <text class='relater'>\t{{item.community_relater}}\t</text>
+          <text class='leader'>{{item.community_leader}}\t</text>
+          <text class='name'>{{item.community_name}}\t\n\n</text>
+          <text class='requirement'>{{item.requirement}}\t</text> 
+          <text class='level'>{{item.level}}\t</text>
+        </view>
+        <!-- </view> -->
+      </navigator> 
+      <!-- <block wx:for="{{newInfo}}">
+        <text>{{item.level}}</text>
+      </block> -->
+    </view>
+  </view> 
+</view>

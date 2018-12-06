@@ -1,0 +1,69 @@
+<!-- <form bindsubmit="formSubmit">    -->
+<text class='one'>填写注册信息</text>  
+
+
+<view class="weui-cell weui-cell_input"> 
+   <view class="weui-cell__hd">  
+         <view class="nickname">昵称</view> 
+   </view>   
+   <view class="weui-cell__bd">        
+   <input class="weui-input" name="nickname" placeholder="请输入昵称" value="" bindinput='nameGet'/>    
+   </view>
+   </view>  
+
+   <view class="weui-cell weui-cell_input">    
+   <view class="weui-cell__hd">      
+     <view class="email">邮箱</view>   
+      </view>    
+      <view class="weui-cell__bd"> 
+       <input class="weui-input" name="email" placeholder="请输入邮箱" value="" bindinput='emailGet'/>   
+        </view>
+        </view>
+
+     <!-- <view class="weui-cell weui-cell_input">    
+     <view class="weui-cell__hd">       
+      <view class="idcard">身份证号</view>   
+       </view>   
+        <view class="weui-cell__bd">        
+        <input class="weui-input" name="idcard" placeholder="请输入身份证号" value=""/>    
+        </view>
+        </view>    -->
+
+      <!-- <view class="weui-cell weui-cell_input">    
+     <view class="weui-cell__hd">       
+      <view class="id">身份</view>   
+       </view>   
+        <view class="weui-cell__bd">        
+        <input class="weui-input" name="id" placeholder="请选择身份（社团/企业）" value=""/>    
+        </view>
+        </view> -->
+<view class="weui-cell weui-cell_input">
+  <view class="weui-cell__hd">请选择身份（社团/企业）</view>
+  <picker bindchange="bindPickerChange" value="{{idFlag}}" range="{{array}}" class="weui-input">
+    <view class="weui-input">
+      当前选择：{{array[idFlag]}}
+    </view>
+  </picker>
+</view>
+     <view class="weui-cell weui-cell_input">    
+     <view class="weui-cell__hd">       
+      <view class="password">密码</view>   
+       </view>   
+        <view class="weui-cell__bd">        
+        <input class="weui-input" type="password" name="password"  placeholder="请输入密码" value="" bindinput='pwdGet'/>    
+        </view>
+        </view>  
+
+<!-- <view class="weui-cell weui-cell_input">   
+ <view class="weui-label">性别</view> 
+  <input class="weui-input" name='sex'  value='{{sex}}'/>    <view class='weui-cell_ft'>       
+   <switch checked bindchange='switch1Change'></switch>  
+     </view>
+     </view> -->
+     
+
+ <view class="button-sp-area">    
+   <button class="quedingbtn" type="primary" form-type='submit' bindtap='queding' plain="true">确 定 </button>       
+    <button class="fanhuibtn" type="primary"  bindtap='fanhui' plain="true">返 回</button> 
+    </view> 
+    <!-- </form> -->

@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/login/login",
+    "pages/info_detail/info_detail",
+    "pages/release/release",
+    "pages/personal/personal"
+  ],
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#66cc33",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "pages/images/home.png",
+      "selectedIconPath": "pages/images/home_fill.png"
+    },
+    {
+      "pagePath": "pages/release/release",
+      "text": "发布",
+      "iconPath": "pages/images/goods_new.png",
+      "selectedIconPath": "pages/images/goods_new_fill.png"
+    },
+    {
+      "pagePath": "pages/personal/personal",
+      "text": "个人中心",
+      "iconPath": "pages/images/people.png",
+      "selectedIconPath": "pages/images/people_fill.png"
+    }]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}

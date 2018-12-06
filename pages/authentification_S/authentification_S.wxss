@@ -1,0 +1,45 @@
+.quedingbtn{
+  width: 80%;
+  margin-top: 10px;
+}
+.fanhuibtn{
+  width: 80%;
+  margin-top: 5px;
+}
+.name1{
+  margin-top: 5px;
+}
+.sname{
+  margin-top: 5px;
+}
+.saddr{
+  margin-top: 5px;
+}
+.sintro{
+  margin-top: 5px;
+}
+.id1{
+  margin-top: 5px;
+}
+.tel1{
+  margin-top: 5px;
+}
+.name2{
+  margin-top: 5px;
+}
+.tel2{
+  margin-top: 5px;
+}
+.sid{
+  margin-top: 5px;
+}
+.weui-input{
+  margin-top: 2px;
+}
+.weui-cell__hd {
+
+  background-color: azure;
+  
+  line-height: 30px;
+
+}

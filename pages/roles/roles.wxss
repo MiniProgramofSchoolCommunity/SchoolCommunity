@@ -1,0 +1,130 @@
+
+page{
+
+  height: 100%;
+
+}
+
+ 
+/*图片下方背景属性*/
+.container {
+
+  height: 100%;
+
+  width: auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  background-color: #f2f2f2
+
+} 
+/*按钮*/
+
+.communityBtnView {
+
+  width: 80%;
+
+  height: auto;
+
+  background-color: #f2f2f2;
+
+  margin-top: 0px;
+
+  margin-bottom: 0px;
+
+  padding-bottom: 0px;
+
+}
+
+ 
+
+.communityBtn {
+
+  width: 80%;
+
+  margin-top: 60px;
+
+  margin-bottom: 5px;
+
+}
+
+.companyBtnView {
+
+  width: 80%;
+
+  height: auto;
+
+  background-color: #f2f2f2;
+
+  margin-top: 0px;
+
+  margin-bottom: 0px;
+
+  padding-bottom: 0px;
+
+}
+
+ 
+
+.companyBtn {
+
+  width: 80%;
+
+  margin-bottom:5px;
+  
+}
+.vipBtnView {
+
+  width: 80%;
+
+  height: auto;
+
+  background-color: #f2f2f2;
+
+  margin-top: 0px;
+
+  margin-bottom: 0px;
+
+  padding-bottom: 0px;
+
+}
+
+ 
+
+.vipBtn {
+
+  width: 80%;
+
+  margin-bottom: 60px;
+  
+}
+
+.clickBtnView {
+
+  width: auto;
+
+  height: auto;
+
+  background-color: #f2f2f2;
+
+  margin-top: 0px;
+
+  margin-bottom: 0px;
+
+  padding-bottom: 0px;
+
+}
+
+ 
+
+.clickBtn {
+
+  width: 100%;
+    margin-bottom: 190px;  
+}

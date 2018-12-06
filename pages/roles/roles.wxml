@@ -1,0 +1,22 @@
+<view class="container">
+
+<view class="communityBtnView">
+
+      <button class="communityBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="community">高校社团</button>
+
+    </view>
+
+       <view class="companyBtnView">
+
+      <button class="companyBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="company"  plain style="color:white; border-color:#FFBB00;background-color:#FFBB00;">企业赞助商</button>
+
+    </view>
+    <view class="vipBtnView">
+
+      <button class="vipBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="vip"  plain style="color:white; border-color:red;background-color:#FF0000;">监管账户</button>
+       </view>
+        <view class="clickBtnView">
+
+      <button class="clickBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="click"  plain style="color:white; border-color:#DB7093;background-color:#DB7093;">点击注册</button>
+       </view>
+       </view>

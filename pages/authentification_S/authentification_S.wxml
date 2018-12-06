@@ -1,0 +1,99 @@
+<!-- <form bindsubmit="formSubmit">    -->
+<!-- <text class='one'>请填写社团认证信息</text>   -->
+
+<view class="weui-cell weui-cell_input">    
+  <view class="weui-cell__hd">       
+    <view class="sname">赞助公司名称</view>   
+       </view>   
+        <view class="weui-cell__bd">        
+        <input class="weui-input" name="idcard" placeholder="请输入赞助公司名称" value=""/>    
+        </view>
+        </view>   
+
+<view class="weui-cell weui-cell_input">    
+  <view class="weui-cell__hd">       
+    <view class="saddr">公司地址</view>   
+       </view>   
+        <view class="weui-cell__bd">        
+        <input class="weui-input" name="idcard" placeholder="请输入公司地址" value=""/>    
+        </view>
+        </view>  
+
+<view class="weui-cell weui-cell_input">    
+  <view class="weui-cell__hd">       
+    <view class="sintro">公司简介</view>   
+       </view>   
+        <view class="weui-cell__bd">        
+        <input class="weui-input" name="idcard" placeholder="请输入公司简介（50字以内）" value=""/>    
+        </view>
+        </view>  
+
+<view class="weui-cell weui-cell_input"> 
+   <view class="weui-cell__hd">  
+         <view class="sid">公司统一信用码</view> 
+   </view>   
+   <view class="weui-cell__bd">        
+   <input class="weui-input" name="nickname" placeholder="请输入公司统一信用码" value="" bindinput='nameGet'/>    
+   </view>
+   </view>  
+
+   <view class="weui-cell weui-cell_input">    
+  <view class="weui-cell__hd">       
+    <view class="name1">法人姓名</view>   
+       </view>   
+        <view class="weui-cell__bd">        
+        <input class="weui-input" name="idcard" placeholder="请输入法人姓名" value=""/>    
+        </view>
+        </view>   
+
+   <view class="weui-cell weui-cell_input">    
+   <view class="weui-cell__hd">      
+     <view class="id1">法人身份证号</view>   
+      </view>    
+      <view class="weui-cell__bd"> 
+       <input class="weui-input" name="email" placeholder="请输入法人身份证号" value="" bindinput='emailGet'/>   
+        </view>
+        </view>
+
+     <view class="weui-cell weui-cell_input">    
+     <view class="weui-cell__hd">       
+      <view class="tel1">法人联系方式</view>   
+       </view>   
+        <view class="weui-cell__bd">        
+        <input class="weui-input" name="idcard" placeholder="请输入法人联系方式" value=""/>    
+        </view>
+        </view>   
+
+<view class="weui-cell weui-cell_input">    
+  <view class="weui-cell__hd">       
+    <view class="name2">负责人姓名</view>   
+       </view>   
+        <view class="weui-cell__bd">        
+        <input class="weui-input" name="idcard" placeholder="请输入负责人姓名" value=""/>    
+        </view>
+        </view>  
+
+<view class="weui-cell weui-cell_input">    
+  <view class="weui-cell__hd">       
+    <view class="tel2">负责人联系方式</view>   
+       </view>   
+        <view class="weui-cell__bd">        
+        <input class="weui-input" name="idcard" placeholder="请输入负责人联系方式" value=""/>    
+        </view>
+        </view> 
+
+      <!-- <view class="weui-cell weui-cell_input">    
+     <view class="weui-cell__hd">       
+      <view class="id">身份</view>   
+       </view>   
+        <view class="weui-cell__bd">        
+        <input class="weui-input" name="id" placeholder="请选择身份（社团/企业）" value=""/>    
+        </view>
+        </view> -->
+     
+
+ <view class="button-sp-area">    
+   <button class="quedingbtn" type="primary" form-type='submit' bindtap='queding' plain="true">确 定 认 证</button>       
+    <button class="fanhuibtn" type="primary"  bindtap='fanhui' plain="true">返 回</button> 
+    </view> 
+    <!-- </form> -->

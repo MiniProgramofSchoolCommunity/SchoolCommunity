@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SchoolCommunity.SchoolCommunityBackendNew.mappers.ManageMapper">
+  <resultMap id="BaseResultMap" type="SchoolCommunity.SchoolCommunityBackendNew.model.Manage">
+    <id column="manageruserid" jdbcType="BIGINT" property="manageruserid" />
+    <id column="interviwee" jdbcType="BIGINT" property="interviwee" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    manageruserid, interviwee
+  </sql>
+  <select id="selectByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.ManageExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from manage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from manage
+    where manageruserid = #{manageruserid,jdbcType=BIGINT}
+      and interviwee = #{interviwee,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.ManageExample">
+    delete from manage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Manage">
+    insert into manage (manageruserid, interviwee)
+    values (#{manageruserid,jdbcType=BIGINT}, #{interviwee,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.Manage">
+    insert into manage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="manageruserid != null">
+        manageruserid,
+      </if>
+      <if test="interviwee != null">
+        interviwee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="manageruserid != null">
+        #{manageruserid,jdbcType=BIGINT},
+      </if>
+      <if test="interviwee != null">
+        #{interviwee,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="SchoolCommunity.SchoolCommunityBackendNew.model.ManageExample" resultType="java.lang.Long">
+    select count(*) from manage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update manage
+    <set>
+      <if test="record.manageruserid != null">
+        manageruserid = #{record.manageruserid,jdbcType=BIGINT},
+      </if>
+      <if test="record.interviwee != null">
+        interviwee = #{record.interviwee,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update manage
+    set manageruserid = #{record.manageruserid,jdbcType=BIGINT},
+      interviwee = #{record.interviwee,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

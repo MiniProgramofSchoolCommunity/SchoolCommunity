@@ -1,0 +1,36 @@
+.quedingbtn{
+  width: 80%;
+  margin-top: 80px;
+}
+.fanhuibtn{
+  width: 80%;
+  margin-top: 30px;
+}
+/* .one{
+  margin-top: 100px;
+} */
+.nickname{
+  margin-top: 10px;
+}
+.email{
+  margin-top: 10px;
+}
+.idcard{
+  margin-top: 10px;
+}
+.id{
+  margin-top: 10px;
+}
+.password{
+  margin-top: 10px;
+}
+.weui-input{
+  margin-top: 2px;
+}
+.weui-cell__hd {
+
+  background-color: azure;
+  
+  line-height: 40px;
+
+}

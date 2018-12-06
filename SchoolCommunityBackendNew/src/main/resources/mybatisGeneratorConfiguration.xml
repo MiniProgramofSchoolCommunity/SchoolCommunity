@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动包位置 -->
+    <!-- 由于在pom.xml中加入插件时已经配置数据库驱动包，所以此处不必配置了-->
+    <!-- <classPathEntry location="D:\generator\mysql-connector-java-5.1.34.jar" /> -->
+    <!--<classPathEntry location="E:\Database\Oracle\jdbc\lib\ojdbc14.jar" />-->
+    <properties resource="application.properties"/>
+    <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}" connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}" password="${spring.datasource.password}">
+        </jdbcConnection>
+        <!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:orcl" userId="scott" password="tiger">
+         </jdbcConnection>-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="SchoolCommunity.SchoolCommunityBackendNew.model"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成的映射文件包名和位置 -->
+        <!-- 适用于XML配置下的MAPPING -->
+        <sqlMapGenerator targetPackage="mapping"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的包名和位置 -->
+        <!-- annotation类型 -->
+        <!--<javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="SchoolCommunity.SchoolCommunityBackendNew.dao"-->
+        <!--targetProject="src/main/java">-->
+        <!--<property name="enableSubPackages" value="true"/>-->
+        <!--</javaClientGenerator>-->
+        <!-- XML类型 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="SchoolCommunity.SchoolCommunityBackendNew.mappers"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
+        <table tableName="userbasicinfo"
+               domainObjectName="UserInfo"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+        <table tableName="log"
+               domainObjectName="Log"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <!--因为使用序列所以tyep="pre" 若为自动增长的（mysql）则使用after-->
+            <!--type:type=post and identity=true的时候生成的<selectKey>中的order=AFTER,当type=pre的时候，identity只能为false，生成的<selectKey>中的order=BEFORE。
+            可以这么理解，自动增长的列只有插入到数据库后才能得到ID，所以是AFTER,使用序列时，只有先获取序列之后，才能插入数据库，所以是BEFORE-->
+            <generatedKey column="userid" type='pre' sqlStatement="select nextval('log_userid_seq') as userid"/>
+        </table>
+        <table tableName="role"
+               domainObjectName="Role"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+        <table tableName="authority"
+               domainObjectName="Authority"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+        <table tableName="community"
+               domainObjectName="Community"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+        <table tableName="corporation"
+               domainObjectName="Corporation"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+        <table tableName="activitybasicinfo"
+               domainObjectName="ActivityBasicInfo"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <generatedKey column="activityid" type='pre'
+                          sqlStatement="select nextval('activitybasicinfo_activityid_seq') as activityid"/>
+        </table>
+        <table tableName="requirement"
+               domainObjectName="Requirement"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+        <table tableName="activityneeded"
+               domainObjectName="ActivityNeeded"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+        <table tableName="manage"
+               domainObjectName="Manage"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+        <table tableName="loginstatus"
+               domainObjectName="LoginStatus"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+
+    </context>
+</generatorConfiguration>

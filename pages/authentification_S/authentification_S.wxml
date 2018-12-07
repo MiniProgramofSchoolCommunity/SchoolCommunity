@@ -6,7 +6,7 @@
     <view class="sname">赞助公司名称</view>   
        </view>   
         <view class="weui-cell__bd">        
-        <input class="weui-input" name="idcard" placeholder="请输入赞助公司名称" value=""/>    
+        <input class="weui-input" name="idcard" placeholder="请输入赞助公司名称" value="" bindinput='cnameget' />    
         </view>
         </view>   
 
@@ -15,7 +15,7 @@
     <view class="saddr">公司地址</view>   
        </view>   
         <view class="weui-cell__bd">        
-        <input class="weui-input" name="idcard" placeholder="请输入公司地址" value=""/>    
+        <input class="weui-input" name="idcard" placeholder="请输入公司地址" value="" bindinput='addressget'/>    
         </view>
         </view>  
 
@@ -24,7 +24,7 @@
     <view class="sintro">公司简介</view>   
        </view>   
         <view class="weui-cell__bd">        
-        <input class="weui-input" name="idcard" placeholder="请输入公司简介（50字以内）" value=""/>    
+        <input class="weui-input" name="idcard" placeholder="请输入公司简介（50字以内）" value="" bindinput='cinroget'/>    
         </view>
         </view>  
 
@@ -33,7 +33,7 @@
          <view class="sid">公司统一信用码</view> 
    </view>   
    <view class="weui-cell__bd">        
-   <input class="weui-input" name="nickname" placeholder="请输入公司统一信用码" value="" bindinput='nameGet'/>    
+   <input class="weui-input" name="nickname" placeholder="请输入公司统一信用码" value="" bindinput='nameGet' bindtap='regisnumget'/>    
    </view>
    </view>  
 
@@ -42,7 +42,7 @@
     <view class="name1">法人姓名</view>   
        </view>   
         <view class="weui-cell__bd">        
-        <input class="weui-input" name="idcard" placeholder="请输入法人姓名" value=""/>    
+        <input class="weui-input" name="idcard" placeholder="请输入法人姓名" value="" bindinput='leadernameget'/>    
         </view>
         </view>   
 
@@ -51,7 +51,7 @@
      <view class="id1">法人身份证号</view>   
       </view>    
       <view class="weui-cell__bd"> 
-       <input class="weui-input" name="email" placeholder="请输入法人身份证号" value="" bindinput='emailGet'/>   
+       <input class="weui-input" name="email" placeholder="请输入法人身份证号" value="" bindinput='emailGet' bindtap='leaderidcardget'/>   
         </view>
         </view>
 
@@ -60,7 +60,7 @@
       <view class="tel1">法人联系方式</view>   
        </view>   
         <view class="weui-cell__bd">        
-        <input class="weui-input" name="idcard" placeholder="请输入法人联系方式" value=""/>    
+        <input class="weui-input" name="idcard" placeholder="请输入法人联系方式" value="" bindinput='leadernumget'/>    
         </view>
         </view>   
 
@@ -69,7 +69,7 @@
     <view class="name2">负责人姓名</view>   
        </view>   
         <view class="weui-cell__bd">        
-        <input class="weui-input" name="idcard" placeholder="请输入负责人姓名" value=""/>    
+        <input class="weui-input" name="idcard" placeholder="请输入负责人姓名" value="" bindinput='contactsnameget'/>    
         </view>
         </view>  
 
@@ -78,7 +78,7 @@
     <view class="tel2">负责人联系方式</view>   
        </view>   
         <view class="weui-cell__bd">        
-        <input class="weui-input" name="idcard" placeholder="请输入负责人联系方式" value=""/>    
+        <input class="weui-input" name="idcard" placeholder="请输入负责人联系方式" value="" bindinput='contactsnumget'/>    
         </view>
         </view> 
 

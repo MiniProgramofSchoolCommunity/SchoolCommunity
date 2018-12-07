@@ -14,7 +14,8 @@ Page({
         "/pages/images/fall.jpg",
         "/pages/images/xiaohui.jpg"
       ],
-    newInfo:{}
+    newInfo:{},
+    pageNum:1
   },
 
   /**
@@ -30,12 +31,13 @@ Page({
     //   })
     // })
     wx.request({
-      url: '',//todo
-      header:{
-
-      },
+      url: 'http://localhost:80/activity/getActivityList.do',//todo
       method:'post',
+      data:{
+        pageNum:that.data.pageNum
+      },
       success:function(res){
+        console.log(res)
         that.setData({
           newInfo:res.data
         })

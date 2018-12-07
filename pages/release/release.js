@@ -1,4 +1,5 @@
 // pages/release/release.js
+const app=getApp()
 Page({
 
   /**
@@ -11,6 +12,7 @@ Page({
     require_intro:'',
     activity_intro:'',
     identifyFlag:false,
+    activityType:{}
   },
 
   /**
@@ -42,22 +44,35 @@ Page({
       date: e.detail.value
     })
   },
-  quedingbtn:function(){
+  queding:function(){
     var that=this
+    if(app.globalData.usertype==3) that.setData({
+      activityType:0
+    })
+    else{
+      that.setData({
+        activityType: 0
+      })
+    }
     wx.request({   //fetch FLAG
-      url: '',      //todo
-      header:{
+      url: 'http://localhost:80/user/activity/publish.do',      //todo
+      // header:{
 
-      },
+      // },
       data:{
-
+        userid:app.globalData.userid,
+        activityType: that.data.activityType,
+        activityName:that.data.name,
+        activityAddress:that.data.place,
+        activityIntro: that.data.activity_intro,
+        requirement: that.data.require_intro,
       },
       method:'post',
       success:function(res){
-        that.setData({
-          identifyFlag:res.data.Flag    //todo
-        })
-        if(res.data==true){    //if had identified
+        // that.setData({
+        //   identifyFlag:res.data.Flag    //todo
+        // })
+        if(res.data.STATUS=="SUCCESS"){    //if had identified
           wx.showToast({
             title: '您已成功发布消息',
             duration:2000
@@ -66,10 +81,21 @@ Page({
             url: '/pages/index/index',
           })
         }
-        else{
+        else if(res.data.STATUS=="FAILED"){
+          wx.showToast({
+            title: '数据库错误，请重试',
+            duration:2000
+          })
+        }
+        else if(res.data.STATUS=="NOPERMISSION"){
           wx.showToast({
             title: '您尚未认证，请前往个人中心进行认证',
             duration: 2000
+          })
+        }
+        else{
+          wx.showToast({
+            title: '信息未全或输入错误',
           })
         }
       }

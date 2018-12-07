@@ -35,7 +35,7 @@ Page({
       wx.request({
         url: 'http://localhost:80/user/login.do',
         header:{
-          'content-type': 'application/x-www-form-urlencoded'
+          'content-type': 'application/json'
         },
         data:{
           username:this.data.username,
@@ -44,8 +44,9 @@ Page({
         method:'post',
         success:function(res){
           console.log(res);
-          if(res.data.status == 'success'){
-            app.globalData.uerid=res.data.userid,
+          if(res.data.STATUS == 'SUCCESS'){
+            app.globalData.userid=res.data.USERID,
+            app.globalData.usertype=res.data.TYPE,
             wx.showToast({
               title: '登录成功',
               icon: 'success',
@@ -57,13 +58,13 @@ Page({
           })
           console.log(1)
           }
-          else if (res.data.status == 'pwderror'){
+          else if (res.data.STATUS == 'PWDERROR'){
             wx.showToast({
               title: '密码错误',
               icon: 'failed',
               duration: 2000
             })
-          } else if (res.data.status == 'notexits') {
+          } else if (res.data.STATUS == 'NOTEXISTS') {
             wx.showToast({
               title: '账户不存在',
               icon: 'failed',
@@ -71,7 +72,7 @@ Page({
             })
             
           }
-          else if (res.data.status == 'failed') {
+          else if (res.data.STATUS == 'FAILED') {
             wx.showToast({
               title: '未知错误',
               icon: 'failed',

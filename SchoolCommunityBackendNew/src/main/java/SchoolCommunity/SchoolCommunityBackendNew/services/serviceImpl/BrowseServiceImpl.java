@@ -59,6 +59,7 @@ public class BrowseServiceImpl implements BrowseService {
             Map<Long, Community> communityMap = new HashMap<>();
             for (Community community : communityList) {
                 communityMap.put(community.getUserid(), community);
+                System.out.println(community.getUserid());
             }
 
             Map<Long, Corporation> corporationMap = new HashMap<>();

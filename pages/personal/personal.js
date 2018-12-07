@@ -20,32 +20,48 @@ Page({
     })
   },
   identify:function(){
+    //console.log(1)
     var that=this
     wx.request({
-      url: '',//todo
+      url: 'http://localhost:80/user/verifyStatus.do',//todo
       header:{
 
       },
+      data:{
+        userid:app.globalData.userid
+      },
       method:'post',
       success:function(res){
-        that.setData({
-          isIdentify: res.data.isIdentify
-        })
-        if(isIdentify==true){
+        // that.setData({
+        //   isIdentify: res.data.isIdentify
+        // })
+        console.log(res)
+        if(res.data.STATUS=="VERIFIED"){
           wx.showToast({
             title: '您已进行认证，请勿重复认证',
             duration:2000
           })
         }
-        else{
-          if(res.data.type==3)
+        //else if()
+        else if (res.data.STATUS =="NOPERMISSION"){
+          console.log(1)
+          console.log(app.globalData.usertype)
+          if(app.globalData.usertype==2){
+            console.log(app.globalData.usertype)
           wx.navigateTo({
             url: '/pages/authentification_C/authentification_C',
-          })
-          if (res.data.type == 4)
+          })}
+          if (app.globalData.usertype == 3){
+            console.log(app.globalData.usertype)
             wx.navigateTo({
               url: '/pages/authentification_S/authentification_S',
             })
+        }}
+        else {
+          wx.showToast({
+            title: '未知错误请重试',
+            duration:2000
+          })
         }
       }
     })

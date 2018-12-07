@@ -1,14 +1,22 @@
 {
   "pages":[
+    "pages/login/login",
+    "pages/roles/roles",
     "pages/authentification_C/authentification_C",
     "pages/authentification_S/authentification_S",
+    
+    
+    "pages/register/register",
     "pages/index/index",
-    "pages/roles/roles",
-    "pages/login/login",
+    
+    
+    
+    
+    
     "pages/info_detail/info_detail",
     "pages/personal/personal",
     "pages/release/release",
-    "pages/register/register",
+    
     "pages/logs/logs",
     
     

@@ -38,12 +38,12 @@ Page({
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    if(e.detail.value==0){
-      this.data.idType=2
-    }
-    if (e.detail.value == 1) {
-      this.data.idType=3
-    }
+    // if(e.detail.value==0){
+    //   this.data.idType=2
+    // }
+    // if (e.detail.value == 1) {
+    //   this.data.idType=3
+    // }
     console.log('idype: ', this.data.idType)
     this.setData({
       idFlag:e.detail.value,
@@ -56,6 +56,8 @@ Page({
     })
   },
   queding: function () {
+    if(this.data.idFlag==0) this.data.idtype=2
+    if (this.data.idFlag == 1) this.data.idtype = 3
     //this.data.idtype=this.data.idFlag+2,
     console.log(this.data.idtype)
     wx.request({
@@ -68,9 +70,10 @@ Page({
         pwd:this.data.pwd,
       },
       header:{
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/json'
       },
       success:function(res){
+        console.log(res);
         if(res.data=='success'){
           wx.showToast({
             title: '注册成功',
@@ -81,7 +84,7 @@ Page({
             url: '/pages/login/login',
           })
         }
-      if(res.data=='exist') {
+      else if(res.data=='existed') {
         wx.showToast({
           title: '邮箱或用户名重复',
           icon: 'none',

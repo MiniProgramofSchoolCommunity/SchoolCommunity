@@ -94,7 +94,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/verifyStatus.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/verifyStatus.do", method = RequestMethod.POST)
     @ResponseBody
     public String verifyStatus(@RequestBody JSONObject jsonParams) throws ServletException {
         Map<String, String> resultStatus = new HashMap<>();
@@ -106,7 +106,7 @@ public class UserController {
             if (verifiedStatus == Status.NOPERMISSION) {
                 resultStatus.put("STATUS", Status.NOPERMISSION.getName());
             } else {
-                resultStatus.put("STATUS", Status.SUCCESS.getName());
+                resultStatus.put("STATUS", Status.VERIFIED.getName());
             }
         }
         return JSONObject.toJSONString(resultStatus);

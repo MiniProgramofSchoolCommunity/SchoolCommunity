@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +27,7 @@ public class BrowseController {
     private BrowseService browseService;
 
     // todo 获取活动简略信息处理
-    @RequestMapping(value = "/getActivityList.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/getactivityList.do", method = RequestMethod.GET)
     @ResponseBody
     public String getActivityList(@RequestBody JSONObject jsonParams) throws ServletException {
         int pageNum = jsonParams.getInteger("pageNum");
@@ -40,8 +39,8 @@ public class BrowseController {
 
     @RequestMapping(value = "/getPageInfo.do", method = RequestMethod.GET)
     @ResponseBody
-    public String getPageInfo(HttpServletRequest request) throws ServletException {
-        int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+    public String getPageInfo(@RequestBody JSONObject jsonParams) throws ServletException {
+        int pageNum = jsonParams.getInteger("pageNum");
         int pageSize = 10;
         PageInfo<ActivityBrief> briefPageInfo = browseService.getPageInfo(pageNum, pageSize);
         return JSON.toJSONString(briefPageInfo);

@@ -4,7 +4,6 @@ import SchoolCommunity.SchoolCommunityBackendNew.entity.ActivityBrief;
 import SchoolCommunity.SchoolCommunityBackendNew.mappers.ActivityBasicInfoMapper;
 import SchoolCommunity.SchoolCommunityBackendNew.mappers.CommunityMapper;
 import SchoolCommunity.SchoolCommunityBackendNew.model.ActivityBasicInfo;
-import SchoolCommunity.SchoolCommunityBackendNew.model.Community;
 import SchoolCommunity.SchoolCommunityBackendNew.services.BrowseService;
 import com.alibaba.fastjson.JSON;
 import org.junit.Test;
@@ -39,16 +38,16 @@ public class BrowseServiceTest extends TestClass {
         Date date = new Date();
         activityBasicInfo.setDate(date);
         activityBasicInfo.setTime(date);
-        Community community = new Community();
-        community.setSchool("scdx");
-        community.setSintro("123");
-        community.setSleadername("ymx");
-        community.setSname("sdd");
-        community.setSleaderidcard("123");
-        community.setSleadernum("456");
-        community.setSlevel(0);
-        community.setUserid((long) 1);
-        communityMapper.insert(community);
+//        Community community = new Community();
+//        community.setSchool("scdx");
+//        community.setSintro("123");
+//        community.setSleadername("ymx");
+//        community.setSname("sdd");
+//        community.setSleaderidcard("123");
+//        community.setSleadernum("456");
+//        community.setSlevel(0);
+//        community.setUserid((long) 1);
+//        communityMapper.insert(community);
         for (int i = 0; i < 10; ++i) {
             activityBasicInfoMapper.insert(activityBasicInfo);
         }

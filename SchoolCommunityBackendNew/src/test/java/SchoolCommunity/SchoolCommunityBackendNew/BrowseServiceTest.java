@@ -27,7 +27,7 @@ public class BrowseServiceTest extends TestClass {
 
     @Test
     @Transactional
-    @Rollback()
+    @Rollback(false)
     public void getActivituList() {
         ActivityBasicInfo activityBasicInfo = new ActivityBasicInfo();
         activityBasicInfo.setActivityname("wht");
@@ -38,16 +38,16 @@ public class BrowseServiceTest extends TestClass {
         Date date = new Date();
         activityBasicInfo.setDate(date);
         activityBasicInfo.setTime(date);
-        Community community = new Community();
-        community.setSchool("scdx");
-        community.setSintro("123");
-        community.setSleadername("ymx");
-        community.setSname("sdd");
-        community.setSleaderidcard("123");
-        community.setSleadernum("456");
-        community.setSlevel(0);
-        community.setUserid((long) 1);
-        communityMapper.insert(community);
+//        Community community = new Community();
+//        community.setSchool("scdx");
+//        community.setSintro("123");
+//        community.setSleadername("ymx");
+//        community.setSname("sdd");
+//        community.setSleaderidcard("123");
+//        community.setSleadernum("456");
+//        community.setSlevel(0);
+//        community.setUserid((long) 1);
+//        communityMapper.insert(community);
         for (int i = 0; i < 10; ++i) {
             activityBasicInfoMapper.insert(activityBasicInfo);
         }

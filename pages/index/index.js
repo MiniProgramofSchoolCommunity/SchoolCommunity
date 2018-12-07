@@ -41,6 +41,7 @@ Page({
         that.setData({
           newInfo:res.data
         })
+        //console.log(that.data.newInfo)
       }
     })
     // console.log(infoData.newInfo());

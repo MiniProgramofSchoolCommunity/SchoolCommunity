@@ -31,7 +31,6 @@ public class BrowseController {
     @ResponseBody
     public String getActivityList(@RequestBody JSONObject jsonParams) throws ServletException {
         int pageNum = jsonParams.getInteger("pageNum");
-        System.out.println(pageNum);
         int pageSize = 10;
         ArrayList<ActivityBrief> activityBriefArrayList = browseService.getActivityListByPage(pageNum, pageSize);
 
@@ -53,7 +52,7 @@ public class BrowseController {
     public String getActivityDetail(@RequestBody JSONObject jsonParams) {
         Map<String, String> resultStatus = new HashMap<>();
         long id = jsonParams.getLong("activityId");
-        int type = jsonParams.getInteger("type");
+        int type = jsonParams.getInteger("atype");
         ActivityDetail activityDetail = browseService.getActivityDetail(id, type);
         if (activityDetail == null) {
             resultStatus.put("STATUS", Status.PARAMSERROR.getName());

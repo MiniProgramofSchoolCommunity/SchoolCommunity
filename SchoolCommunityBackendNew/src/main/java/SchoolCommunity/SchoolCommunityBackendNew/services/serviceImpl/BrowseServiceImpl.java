@@ -5,6 +5,7 @@ import SchoolCommunity.SchoolCommunityBackendNew.entity.ActivityDetail;
 import SchoolCommunity.SchoolCommunityBackendNew.mappers.*;
 import SchoolCommunity.SchoolCommunityBackendNew.model.*;
 import SchoolCommunity.SchoolCommunityBackendNew.services.BrowseService;
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,6 @@ public class BrowseServiceImpl implements BrowseService {
             Map<Long, Community> communityMap = new HashMap<>();
             for (Community community : communityList) {
                 communityMap.put(community.getUserid(), community);
-                System.out.println(community.getUserid());
             }
 
             Map<Long, Corporation> corporationMap = new HashMap<>();
@@ -118,6 +118,10 @@ public class BrowseServiceImpl implements BrowseService {
                     activityDetail.setTime(activityBasicInfo.getTime());
                     activityDetail.setSponsor(requirement.getSname());
                     activityDetail.setType(0);
+
+                    System.out.println(JSON.toJSONString(activityDetail));
+                } else {
+                    activityDetail = null;
                 }
             } else if (type == 1) {
                 ActivityNeeded activityNeeded = activityNeededMapper.selectByPrimaryKey(activityId);

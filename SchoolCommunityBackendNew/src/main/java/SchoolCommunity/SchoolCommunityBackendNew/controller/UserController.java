@@ -47,7 +47,6 @@ public class UserController {
         if (userLogInfo.getPwd() != null && userLogInfo.getUsername() != null) {
             logInStatus = userService.login(userLogInfo.getUsername(), userLogInfo.getPwd());
         } else {
-            System.out.println(userLogInfo.getUsername() + " " + userLogInfo.getPwd());
             logInStatus = new HashMap<>();
             logInStatus.put("STATUS", Status.FAILED.getName());
             logInStatus.put("TYPE", null);

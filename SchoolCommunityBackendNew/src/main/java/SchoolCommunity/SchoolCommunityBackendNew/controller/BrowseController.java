@@ -30,8 +30,8 @@ public class BrowseController {
     // todo 获取活动简略信息处理
     @RequestMapping(value = "/getActivityList.do", method = RequestMethod.GET)
     @ResponseBody
-    public String getActivityList(HttpServletRequest request) throws ServletException {
-        int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+    public String getActivityList(@RequestBody JSONObject jsonParams) throws ServletException {
+        int pageNum = jsonParams.getInteger("pageNum");
         int pageSize = 10;
         ArrayList<ActivityBrief> activityBriefArrayList = browseService.getActivityListByPage(pageNum, pageSize);
 

@@ -114,6 +114,7 @@ public class UserServicesImpl implements UserService {
         List<UserInfo> list = userInfoMapper.selectByExample(userInfoExample);
         if (!list.isEmpty()) {
             int verfyStatus = list.get(0).getStatus();
+            int sent = list.get(0).getSent();
             if (verfyStatus != 0) {
                 status = Status.VERIFIED;
             } else {

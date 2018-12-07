@@ -107,14 +107,11 @@ public class UserServicesImpl implements UserService {
     @Override
     public Status isVerified(long userid) {
         Status status = Status.NOTEXISTS;
-        UserInfoExample userInfoExample = new UserInfoExample();
-        UserInfoExample.Criteria criteria = userInfoExample.createCriteria();
-        criteria.andUseridEqualTo(userid);
+        UserInfo user=userInfoMapper.selectByPrimaryKey(userid);
 
-        List<UserInfo> list = userInfoMapper.selectByExample(userInfoExample);
-        if (!list.isEmpty()) {
-            int verfyStatus = list.get(0).getStatus();
-            int sent = list.get(0).getSent();
+        if (user!=null) {
+            int verfyStatus = user.getStatus();
+            int sent = user.getSent();
             if (verfyStatus != 0) {
                 status = Status.VERIFIED;
             } else {

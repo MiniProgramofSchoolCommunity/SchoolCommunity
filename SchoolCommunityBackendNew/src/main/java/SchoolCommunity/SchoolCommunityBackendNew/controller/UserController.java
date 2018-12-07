@@ -116,7 +116,7 @@ public class UserController {
     @RequestMapping(value = "/verifyRequest.do", method = RequestMethod.POST)
     @ResponseBody
     public String verifyRequest(@RequestBody JSONObject jsonParams) throws ServletException {
-        int type = jsonParams.getInteger("type");
+        int type = jsonParams.getInteger("usertype");
         Map<String, String> resultStatus = new HashMap<>();
         if (type == 2) {
             Community community = new Community();

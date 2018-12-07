@@ -27,7 +27,7 @@ public class BrowseController {
     private BrowseService browseService;
 
     // todo 获取活动简略信息处理
-    @RequestMapping(value = "/getactivityList.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAactivityList.do", method = RequestMethod.POST)
     @ResponseBody
     public String getActivityList(@RequestBody JSONObject jsonParams) throws ServletException {
         int pageNum = jsonParams.getInteger("pageNum");
@@ -37,7 +37,7 @@ public class BrowseController {
         return JSON.toJSONString(activityBriefArrayList);
     }
 
-    @RequestMapping(value = "/getPageInfo.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/getPageInfo.do", method = RequestMethod.POST)
     @ResponseBody
     public String getPageInfo(@RequestBody JSONObject jsonParams) throws ServletException {
         int pageNum = jsonParams.getInteger("pageNum");

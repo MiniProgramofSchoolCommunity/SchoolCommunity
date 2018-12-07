@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,14 +51,14 @@ public class UserActivityController {
         activityBasicInfo.setPublisherid(id);
         activityBasicInfo.setActivityintro(jsonParams.getString("activityIntro"));
         // fixme 时间
-//        activityBasicInfo.setDate();
-//        activityBasicInfo.setTime();
+        activityBasicInfo.setDate(new Date());
+        activityBasicInfo.setTime(new Date());
         if (activityBasicInfo.getActivityname() == null || activityBasicInfo.getActivityaddress() == null
                 || activityBasicInfo.getActivityintro() == null || activityBasicInfo.getDate() == null
                 || activityBasicInfo.getTime() == null) {
             resultStatus.put("STATUS", Status.PARAMSERROR.getName());
         } else {
-            int type = jsonParams.getInteger("type");
+            int type = jsonParams.getInteger("activityType");
             if (type == 0) {
                 activityBasicInfo.setType(0);
                 Requirement requirement = new Requirement();

@@ -5,7 +5,6 @@ import SchoolCommunity.SchoolCommunityBackendNew.entity.ActivityDetail;
 import SchoolCommunity.SchoolCommunityBackendNew.mappers.*;
 import SchoolCommunity.SchoolCommunityBackendNew.model.*;
 import SchoolCommunity.SchoolCommunityBackendNew.services.BrowseService;
-import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +70,7 @@ public class BrowseServiceImpl implements BrowseService {
             for (ActivityBasicInfo a : basicInfoList) {
                 ActivityBrief activityBrief = new ActivityBrief();
                 activityBrief.setAddress(a.getActivityaddress());
-                activityBrief.setActicityName(a.getActivityname());
+                activityBrief.setActivityName(a.getActivityname());
                 Date date = new Date(a.getDate().getTime() + a.getTime().getTime());
                 activityBrief.setDate(date);
                 activityBrief.setType(a.getType());

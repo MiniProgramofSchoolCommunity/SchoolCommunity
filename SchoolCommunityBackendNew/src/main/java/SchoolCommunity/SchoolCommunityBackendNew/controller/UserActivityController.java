@@ -39,13 +39,13 @@ public class UserActivityController {
         if (id == null) {
             resultStatus.put("STATUS", Status.PARAMSERROR.getName());
             return JSON.toJSONString(resultStatus);
-        }else if(id == 0 || id == 1){
-            resultStatus.put("STATUS",Status.PARAMSERROR.getName());
-            return JSON.toJSONString(resultStatus);
         }
         Status verifiedStatus = userService.isVerified(id);
         if (verifiedStatus == Status.NOPERMISSION) {
             resultStatus.put("STATUS", Status.NOPERMISSION.getName());
+            return JSON.toJSONString(resultStatus);
+        } else if (verifiedStatus == Status.PARAMSERROR) {
+            resultStatus.put("STATUS", Status.PARAMSERROR.getName());
             return JSON.toJSONString(resultStatus);
         }
         ActivityBasicInfo activityBasicInfo = new ActivityBasicInfo();

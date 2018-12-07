@@ -105,6 +105,8 @@ public class UserController {
             Status verifiedStatus = userService.isVerified(id);
             if (verifiedStatus == Status.NOPERMISSION) {
                 resultStatus.put("STATUS", Status.NOPERMISSION.getName());
+            } else if (verifiedStatus == Status.SENTED) {
+                resultStatus.put("STATUS", Status.SENTED.getName());
             } else {
                 resultStatus.put("STATUS", Status.VERIFIED.getName());
             }

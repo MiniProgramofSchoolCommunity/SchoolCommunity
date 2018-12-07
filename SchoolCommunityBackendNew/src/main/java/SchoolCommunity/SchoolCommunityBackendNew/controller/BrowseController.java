@@ -48,7 +48,7 @@ public class BrowseController {
     }
 
     // todo 活动详细信息请求
-    @RequestMapping(value = "/getAcivityDetail.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/getActivityDetail.do", method = RequestMethod.POST)
     @ResponseBody
     public String getActivityDetail(@RequestBody JSONObject jsonParams) {
         Map<String, String> resultStatus = new HashMap<>();

@@ -1,6 +1,5 @@
 package SchoolCommunity.SchoolCommunityBackendNew.entity;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 public class ActivityBrief {
@@ -15,7 +14,7 @@ public class ActivityBrief {
      * id
      */
     private int type;
-    private String acticityName;
+    private String activityName;
     private Date date;
     private String address;
     private String sponsorName;
@@ -26,8 +25,8 @@ public class ActivityBrief {
         this.type = type;
     }
 
-    public void setActicityName(String acticityName) {
-        this.acticityName = acticityName;
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 
     public void setAddress(String address) {
@@ -66,8 +65,8 @@ public class ActivityBrief {
         return sLevel;
     }
 
-    public String getActicityName() {
-        return acticityName;
+    public String getActivityName() {
+        return activityName;
     }
 
     public String getAddress() {

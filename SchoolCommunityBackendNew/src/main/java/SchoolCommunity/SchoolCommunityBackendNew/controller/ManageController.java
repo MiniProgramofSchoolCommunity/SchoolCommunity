@@ -31,7 +31,7 @@ public class ManageController {
     @ResponseBody
     public String getRequestInfo(@RequestBody JSONObject jsonParams) throws ServletException {
         Map<String, String> resultStatus = new HashMap<>();
-        int type = jsonParams.getInteger("type");
+        int type = jsonParams.getInteger("atype");
         long userid = jsonParams.getLong("userid");
         int pageNum = jsonParams.getInteger("pageNum");
         if (type == 1) {

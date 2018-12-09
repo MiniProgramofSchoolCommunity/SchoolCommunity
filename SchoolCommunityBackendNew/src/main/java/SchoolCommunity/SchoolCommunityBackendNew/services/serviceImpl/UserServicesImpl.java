@@ -7,6 +7,7 @@ import SchoolCommunity.SchoolCommunityBackendNew.mappers.LogMapper;
 import SchoolCommunity.SchoolCommunityBackendNew.mappers.UserInfoMapper;
 import SchoolCommunity.SchoolCommunityBackendNew.model.*;
 import SchoolCommunity.SchoolCommunityBackendNew.services.UserService;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -148,6 +149,7 @@ public class UserServicesImpl implements UserService {
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userid);
         if (userInfo != null) {
             userInfo.setSent(1);
+            System.out.println(JSON.toJSONString(corporation));
             int row = corporationMapper.insert(corporation);
             if (row != 1) {
                 return Status.FAILED;

@@ -53,10 +53,17 @@ Page({
               duration: 2000
             }),
           console.log(0)
+          if (app.globalData.usertype==0){
+            wx.navigateTo({
+              url: '/pages/superUser/superUser',
+            })
+          }
+          else{
           wx.switchTab({
             url: '/pages/index/index',
           })
           console.log(1)
+          }
           }
           else if (res.data.STATUS == 'PWDERROR'){
             wx.showToast({

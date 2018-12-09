@@ -82,6 +82,7 @@ Page({
         cname:that.data.cname,
         regisnum: that.data.regisnum,
       },
+      method:'post',
       success:function(res){
         if (res.data.STATUS == "SUCCESS") {
           wx.showToast({

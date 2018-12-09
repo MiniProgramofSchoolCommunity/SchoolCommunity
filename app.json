@@ -1,26 +1,19 @@
 {
   "pages":[
     "pages/login/login",
+    "pages/superUser/superUser",
+    
     "pages/roles/roles",
     "pages/authentification_C/authentification_C",
     "pages/authentification_S/authentification_S",
-    
-    
     "pages/register/register",
     "pages/index/index",
-    
-    
-    
-    
-    
     "pages/info_detail/info_detail",
     "pages/personal/personal",
     "pages/release/release",
-    
     "pages/logs/logs",
-    
-    
-    "pages/hasRelease/hasRelease"
+    "pages/hasRelease/hasRelease",
+    "pages/infoIdentify/infoIdentify"
   ],
   "window":{
     "backgroundTextStyle":"light",

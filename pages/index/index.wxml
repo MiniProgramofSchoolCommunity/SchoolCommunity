@@ -10,25 +10,19 @@
    <view class='index-info'>
     <view class='info-title'>信息</view>
     <view class='info-detail'>
+      <scroll-view scroll-y='true' bindscrolltolower='searchScrollLower' style='height:{{scrollHeight}}px' >
        <navigator url='../info_detail/info_detail?id={{item.id}}&atype={{item.type}}' class='info-item' wx:for="{{newInfo}}">
-         <!-- <view><image wx:if="{{infoType==0}}" src='{{item.images}}' class='info-image'/></view> -->
-        <!-- <view class='info-image'> 
-         <view wx:if="{{item.type==0}}"><image src='/pages/images/community.jpg'></image></view>
-         <view wx:if="{{item.type==1}}"><image src='/pages/images/interprise.jpg'></image></view>
-        </view> -->
-        <!-- <view class='detail_info'> -->
         <view>
-          <text class='relater'>\t{{item.acticityName}}\t</text>
+          <text class='relater'>\t{{item.activityName}}\t</text>
           <text class='leader'>{{item.address}}\t</text>
           <text class='name'>{{item.sLevel}}\t\n\n</text>
           <text class='requirement'>{{item.sponsorName}}\t</text> 
           <text class='level'>{{item.type}}\t</text>
         </view>
-        <!-- </view> -->
-      </navigator> 
-      <!-- <block wx:for="{{newInfo}}">
-        <text>{{item.level}}</text>
-      </block> -->
+      </navigator>
+      <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
+      <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+      </scroll-view> 
     </view>
   </view> 
 </view>

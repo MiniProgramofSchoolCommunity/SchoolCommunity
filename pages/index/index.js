@@ -1,12 +1,5 @@
-//index.js
-// var infoData=require('../../utils/infoData.js');
-//获取应用实例
 const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     carousel: 
       [
@@ -14,89 +7,66 @@ Page({
         "/pages/images/fall.jpg",
         "/pages/images/xiaohui.jpg"
       ],
-    newInfo:{},
-    pageNum:1
+    newInfo:[],
+    isFromSearch: true,   // 用于判断searchSongList数组是不是空数组，默认true，空的数组
+    //pageNum:3,
+    searchPageNum: 1,// 设置加载的第几次，默认是第一次
+    searchLoading: false, //"上拉加载"的变量，默认false，隐藏
+    searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏
+    scrollHeight:0
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  searchScrollLower: function () {
+    console.log("u have go to sS")
+    let that = this;
+    //console.log(that.data)
+    if (that.data.searchLoading && !that.data.searchLoadingComplete) {
+      that.setData({
+        searchPageNum: that.data.searchPageNum + 1,  //每次触发上拉事件，把searchPageNum+1
+        isFromSearch: false  //触发到上拉事件，把isFromSearch设为为false
+      });
+      console.log(that.data)
+      that.onLoad();
+    }
+   // console.log(that.data.searchPageNum)
+  },
   onLoad: function () {
-    var that = this
-    //调用应用实例的方法获取全局数据
-    // app.getUserInfo(function (userInfo) {
-    //   //更新数据
-    //   that.setData({
-    //     userInfo: userInfo
-    //   })
-    // })
+    var that = this;
+    console.log("initial data:"+that.data.newInfo)
+    wx.getSystemInfo({
+      success: function (res) {
+       // console.info("window size:"+res.windowHeight);
+        that.setData({
+          scrollHeight: res.windowHeight
+        });
+      }
+    })
     wx.request({
       url: 'http://localhost:80/activity/getActivityList.do',//todo
-      method:'post',
-      data:{
-        pageNum:that.data.pageNum
+      method: 'post',
+      data: {
+        pageNum: that.data.searchPageNum
       },
-      success:function(res){
+      success: function (res) {
+        var infoList = [];
+        if ((res.data.list.length == 10) && res.data.hasNextPage){
+          that.data.isFromSearch ? infoList = res.data.list: infoList = that.data.newInfo.concat(res.data.list);
+          that.setData({
+            newInfo: infoList, //获取数据数组
+            searchLoading: true   //把"上拉加载"的变量设为true，显示
+          });
+          console.log("第一次post数据:"+that.data.newInfo)
+        }
+        else {
+          that.data.isFromSearch ? infoList = res.data.list : infoList = that.data.newInfo.concat(res.data.list);
+          that.setData({
+            newInfo: infoList, //获取数据数组
+            searchLoadingComplete: true, //把“没有数据”设为true，显示
+            searchLoading: false  //把"上拉加载"的变量设为false，隐藏
+          });
+        }
         console.log(res)
-        that.setData({
-          newInfo:res.data
-        })
         //console.log(that.data.newInfo)
       }
     })
-    // console.log(infoData.newInfo());
-    // that.setData({
-    //   carousel:infoData.carousel,
-    //   newInfo:infoData.newInfo()
-    // })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
-  }
 })

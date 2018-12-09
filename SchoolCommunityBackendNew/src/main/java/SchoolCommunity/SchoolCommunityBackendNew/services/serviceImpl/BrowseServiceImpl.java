@@ -117,6 +117,7 @@ public class BrowseServiceImpl implements BrowseService {
     public ActivityDetail getActivityDetail(long activityId, int type) {
         ActivityBasicInfo activityBasicInfo = activityBasicInfoMapper.selectByPrimaryKey(activityId);
         ActivityDetail activityDetail = null;
+        System.out.println(activityId+" "+type);
         if (activityBasicInfo != null) {
             activityDetail = new ActivityDetail();
             if (type == 0) {

@@ -7,6 +7,7 @@ import SchoolCommunity.SchoolCommunityBackendNew.mappers.ManageMapper;
 import SchoolCommunity.SchoolCommunityBackendNew.mappers.UserInfoMapper;
 import SchoolCommunity.SchoolCommunityBackendNew.model.*;
 import SchoolCommunity.SchoolCommunityBackendNew.services.ManageService;
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,7 +123,6 @@ public class ManageServiceImpl implements ManageService {
                 UserInfoExample userInfoExample = new UserInfoExample();
                 UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
                 userInfoCriteria.andUseridIn(useridList);
-
                 PageHelper.startPage(pageNum, 10);
                 List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
                 PageInfo<UserInfo> userInfoPageInfo = new PageInfo<>(userInfoList);
@@ -134,9 +134,9 @@ public class ManageServiceImpl implements ManageService {
                         }
                     }
                     corporationCriteria.andUseridIn(useridList);
-
                     List<Corporation> corporationList = corporationMapper.selectByExample(corporationExample);
                     corporationPageInfo = new PageInfo<>(corporationList);
+                    System.out.println(JSON.toJSONString(corporationPageInfo));
                     corporationPageInfo.setEndRow(userInfoPageInfo.getEndRow());
                     corporationPageInfo.setHasNextPage(userInfoPageInfo.isHasNextPage());
                     corporationPageInfo.setHasPreviousPage(userInfoPageInfo.isHasPreviousPage());

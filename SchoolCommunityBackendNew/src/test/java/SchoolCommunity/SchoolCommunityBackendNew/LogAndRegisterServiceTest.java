@@ -20,13 +20,13 @@ public class LogAndRegisterServiceTest extends TestClass {
     // 事务管理
     @Transactional
     // 回滚
-    @Rollback()
+    @Rollback(false)
     public void register() {
         Log user = new Log();
         UserInfo userInfo = new UserInfo();
-        userInfo.setEmail("123");
-        userInfo.setRoleid(2);
-        user.setUsername("wht");
+        userInfo.setEmail("1234");
+        userInfo.setRoleid(1);
+        user.setUsername("sxx");
         user.setPwd(Encrypt.encrypt("123"));
 
         Assert.assertSame("error", Status.SUCCESS, userService.reister(user, userInfo));

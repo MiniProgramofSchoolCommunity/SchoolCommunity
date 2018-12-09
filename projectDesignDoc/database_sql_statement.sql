@@ -126,3 +126,10 @@ insert into authority(authorityid,authorityname) values(1,'删除');
 insert into authority(authorityid,authorityname) values(2,'浏览详细信息');
 insert into authority(authorityid,authorityname) values(3,'审核社团');
 insert into authority(authorityid,authorityname) values(4,'审核企业');
+insert into log(userid,username,pwd) values(1,'wht','123');
+insert into userbasicinfo(userid,email,roleid) values(1,'1',0);
+insert into log(userid,username,pwd) values(1,'ymx','123');
+insert into userbasicinfo(userid,email,roleid) values(2,'2',1);
+
+insert into manage(manageruserid,interviwee) values(1,3);
+insert into manage(manageruserid,interviwee) values(2,4);

@@ -24,7 +24,7 @@
     <view class="sintro">公司简介</view>   
        </view>   
         <view class="weui-cell__bd">        
-        <input class="weui-input" name="idcard" placeholder="请输入公司简介（50字以内）" value="" bindinput='cinroget'/>    
+        <input class="weui-input" name="idcard" placeholder="请输入公司简介（50字以内）" value="" bindinput='cintroget'/>    
         </view>
         </view>  
 
@@ -33,7 +33,7 @@
          <view class="sid">公司统一信用码</view> 
    </view>   
    <view class="weui-cell__bd">        
-   <input class="weui-input" name="nickname" placeholder="请输入公司统一信用码" value="" bindinput='nameGet' bindtap='regisnumget'/>    
+   <input class="weui-input" name="nickname" placeholder="请输入公司统一信用码" value="" bindinput='regisnumget' />    
    </view>
    </view>  
 
@@ -51,7 +51,7 @@
      <view class="id1">法人身份证号</view>   
       </view>    
       <view class="weui-cell__bd"> 
-       <input class="weui-input" name="email" placeholder="请输入法人身份证号" value="" bindinput='emailGet' bindtap='leaderidcardget'/>   
+       <input class="weui-input" name="email" placeholder="请输入法人身份证号" value="" bindinput='leaderidcardget' />   
         </view>
         </view>
 

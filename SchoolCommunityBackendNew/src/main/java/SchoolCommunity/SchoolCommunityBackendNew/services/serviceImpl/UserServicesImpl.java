@@ -1,10 +1,7 @@
 package SchoolCommunity.SchoolCommunityBackendNew.services.serviceImpl;
 
 import SchoolCommunity.SchoolCommunityBackendNew.entity.Status;
-import SchoolCommunity.SchoolCommunityBackendNew.mappers.CommunityMapper;
-import SchoolCommunity.SchoolCommunityBackendNew.mappers.CorporationMapper;
-import SchoolCommunity.SchoolCommunityBackendNew.mappers.LogMapper;
-import SchoolCommunity.SchoolCommunityBackendNew.mappers.UserInfoMapper;
+import SchoolCommunity.SchoolCommunityBackendNew.mappers.*;
 import SchoolCommunity.SchoolCommunityBackendNew.model.*;
 import SchoolCommunity.SchoolCommunityBackendNew.services.UserService;
 import com.alibaba.fastjson.JSON;
@@ -32,6 +29,9 @@ public class UserServicesImpl implements UserService {
 
     @Autowired
     private CorporationMapper corporationMapper;
+
+    @Autowired
+    private ManageMapper manageMapper;
 
     @Override
     public Map<String, String> login(String userName, String pwd) {
@@ -97,8 +97,22 @@ public class UserServicesImpl implements UserService {
             rows = userInfoMapper.insertSelective(userInfo);
             if (rows != 1) {
                 registerStatus = Status.FAILED;
-
             }
+
+            // fixme distribute the manager id by some user
+            // this is only used for presentation
+
+            Manage manage = new Manage();
+            if(userInfo.getRoleid() == 2){
+                manage.setManageruserid((long) 2);
+            }
+            else {
+                manage.setManageruserid((long) 1);
+            }
+            manage.setInterviwee(userInfo.getUserid());
+            manageMapper.insert(manage);
+
+
         } else {
             registerStatus = Status.FAILED;
         }

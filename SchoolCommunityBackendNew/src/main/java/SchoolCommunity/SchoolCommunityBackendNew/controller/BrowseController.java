@@ -26,7 +26,7 @@ public class BrowseController {
     private BrowseService browseService;
 
     // todo 获取活动简略信息处理
-    @RequestMapping(value = "/getActivityList.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/getActivityList.do", method = RequestMethod.POST, produces = "application/json;text=utf-8")
     @ResponseBody
     public String getActivityList(@RequestBody JSONObject jsonParams) throws ServletException {
         int pageNum = jsonParams.getInteger("pageNum");
@@ -36,7 +36,7 @@ public class BrowseController {
         return JSON.toJSONString(activityBriefArrayList);
     }
 
-    @RequestMapping(value = "/getPageInfo.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/getPageInfo.do", method = RequestMethod.POST, produces = "application/json;text=utf-8")
     @ResponseBody
     public String getPageInfo(@RequestBody JSONObject jsonParams) throws ServletException {
         int pageNum = jsonParams.getInteger("pageNum");
@@ -46,7 +46,7 @@ public class BrowseController {
     }
 
     // todo 活动详细信息请求
-    @RequestMapping(value = "/getActivityDetail.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/getActivityDetail.do", method = RequestMethod.POST, produces = "application/json;text=utf-8")
     @ResponseBody
     public String getActivityDetail(@RequestBody JSONObject jsonParams) {
         Map<String, String> resultStatus = new HashMap<>();

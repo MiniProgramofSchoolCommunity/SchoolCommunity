@@ -6,6 +6,7 @@ import SchoolCommunity.SchoolCommunityBackendNew.model.Corporation;
 import SchoolCommunity.SchoolCommunityBackendNew.services.ManageService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -27,14 +27,15 @@ public class ManageController {
     @Autowired
     private ManageService manageService;
 
-    @RequestMapping(value = "/getRequestInfo.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/getRequestInfo.do", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String getRequestInfo(@RequestBody JSONObject jsonParams) throws ServletException {
         Map<String, String> resultStatus = new HashMap<>();
         int type = jsonParams.getInteger("type");
         long userid = jsonParams.getLong("userid");
+        int pageNum = jsonParams.getInteger("pageNum");
         if (type == 1) {
-            List<Community> communityList = manageService.getCommunityRequestInfo(userid, type);
+            PageInfo<Community> communityList = manageService.getCommunityRequestInfo(userid, type, pageNum);
             if (communityList == null) {
                 resultStatus.put("STATUS", Status.PARAMSERROR.getName());
                 return JSON.toJSONString(resultStatus);
@@ -42,7 +43,7 @@ public class ManageController {
                 return JSON.toJSONString(communityList);
             }
         } else if (type == 0) {
-            List<Corporation> corporationList = manageService.getCorporationRequestInfo(userid, type);
+            PageInfo<Corporation> corporationList = manageService.getCorporationRequestInfo(userid, type, pageNum);
             if (corporationList == null) {
                 resultStatus.put("STATUS", Status.PARAMSERROR.getName());
                 return JSON.toJSONString(resultStatus);

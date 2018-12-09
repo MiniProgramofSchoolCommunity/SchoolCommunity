@@ -44,7 +44,7 @@ public class UserActivityServiceImpl implements UserActivityService {
         List<Community> communityList = communityMapper.selectByExample(communityExample);
         if (!communityList.isEmpty()) {
             Community community = communityList.get(0);
-            requirement.setSname(community.getSname());
+            requirement.setSname(community.getSchool() + community.getSname());
             requirement.setSlevel(community.getSlevel());
             requirement.setSleadername(community.getSleadername());
             requirement.setSleadernum(community.getSleadernum());

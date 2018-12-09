@@ -7,6 +7,8 @@ import SchoolCommunity.SchoolCommunityBackendNew.mappers.ManageMapper;
 import SchoolCommunity.SchoolCommunityBackendNew.mappers.UserInfoMapper;
 import SchoolCommunity.SchoolCommunityBackendNew.model.*;
 import SchoolCommunity.SchoolCommunityBackendNew.services.ManageService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,12 +33,12 @@ public class ManageServiceImpl implements ManageService {
     private ManageMapper manageMapper;
 
     @Override
-    public List<Community> getCommunityRequestInfo(long userid, int type) {
-        List<Community> communityList;
+    public PageInfo<Community> getCommunityRequestInfo(long userid, int type, int pageNum) {
+        PageInfo<Community> communityPageInfo;
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userid);
         int userType = userInfo.getRoleid();
         if (userType != type || type != 1) {
-            communityList = null;
+            communityPageInfo = null;
         } else {
             ManageExample manageExample = new ManageExample();
             ManageExample.Criteria manageCriteria = manageExample.createCriteria();
@@ -55,7 +57,9 @@ public class ManageServiceImpl implements ManageService {
                 UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
                 userInfoCriteria.andUseridIn(useridList);
 
+                PageHelper.startPage(pageNum, 10);
                 List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
+                PageInfo<UserInfo> userInfoPageInfo = new PageInfo<>(userInfoList);
                 if (!useridList.isEmpty()) {
                     useridList.clear();
                     for (UserInfo user : userInfoList) {
@@ -65,24 +69,43 @@ public class ManageServiceImpl implements ManageService {
                     }
                     communityCriteria.andUseridIn(useridList);
 
-                    communityList = communityMapper.selectByExample(communityExample);
+                    List<Community> communityList = communityMapper.selectByExample(communityExample);
+                    communityPageInfo = new PageInfo<>(communityList);
+                    communityPageInfo.setEndRow(userInfoPageInfo.getEndRow());
+                    communityPageInfo.setHasNextPage(userInfoPageInfo.isHasNextPage());
+                    communityPageInfo.setHasPreviousPage(userInfoPageInfo.isHasPreviousPage());
+                    communityPageInfo.setIsFirstPage(userInfoPageInfo.isIsFirstPage());
+                    communityPageInfo.setIsLastPage(userInfoPageInfo.isIsLastPage());
+                    communityPageInfo.setNavigateFirstPage(userInfoPageInfo.getNavigateFirstPage());
+                    communityPageInfo.setNavigateLastPage(userInfoPageInfo.getNavigateLastPage());
+                    communityPageInfo.setNavigatePages(userInfoPageInfo.getNavigatePages());
+                    communityPageInfo.setNavigatepageNums(userInfoPageInfo.getNavigatepageNums());
+                    communityPageInfo.setNextPage(userInfoPageInfo.getNextPage());
+                    communityPageInfo.setPageNum(userInfoPageInfo.getPageNum());
+                    communityPageInfo.setPageSize(userInfoPageInfo.getPageSize());
+                    communityPageInfo.setPages(userInfoPageInfo.getPages());
+                    communityPageInfo.setPrePage(userInfoPageInfo.getPrePage());
+                    communityPageInfo.setSize(userInfoPageInfo.getSize());
+                    communityPageInfo.setStartRow(userInfoPageInfo.getStartRow());
+                    communityPageInfo.setTotal(userInfoPageInfo.getTotal());
                 } else {
-                    communityList = null;
+                    communityPageInfo = null;
                 }
             } else {
-                communityList = null;
+                communityPageInfo = null;
             }
         }
-        return communityList;
+
+        return communityPageInfo;
     }
 
     @Override
-    public List<Corporation> getCorporationRequestInfo(long userid, int type) {
-        List<Corporation> corporationList;
+    public PageInfo<Corporation> getCorporationRequestInfo(long userid, int type, int pageNum) {
+        PageInfo<Corporation> corporationPageInfo;
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userid);
         int userType = userInfo.getRoleid();
         if (userType != type || type != 0) {
-            corporationList = null;
+            corporationPageInfo = null;
         } else {
             ManageExample manageExample = new ManageExample();
             ManageExample.Criteria mangeCriteria = manageExample.createCriteria();
@@ -100,7 +123,9 @@ public class ManageServiceImpl implements ManageService {
                 UserInfoExample.Criteria userInfoCriteria = userInfoExample.createCriteria();
                 userInfoCriteria.andUseridIn(useridList);
 
+                PageHelper.startPage(pageNum, 10);
                 List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
+                PageInfo<UserInfo> userInfoPageInfo = new PageInfo<>(userInfoList);
                 if (!useridList.isEmpty()) {
                     useridList.clear();
                     for (UserInfo user : userInfoList) {
@@ -110,15 +135,33 @@ public class ManageServiceImpl implements ManageService {
                     }
                     corporationCriteria.andUseridIn(useridList);
 
-                    corporationList = corporationMapper.selectByExample(corporationExample);
+                    List<Corporation> corporationList = corporationMapper.selectByExample(corporationExample);
+                    corporationPageInfo = new PageInfo<>(corporationList);
+                    corporationPageInfo.setEndRow(userInfoPageInfo.getEndRow());
+                    corporationPageInfo.setHasNextPage(userInfoPageInfo.isHasNextPage());
+                    corporationPageInfo.setHasPreviousPage(userInfoPageInfo.isHasPreviousPage());
+                    corporationPageInfo.setIsFirstPage(userInfoPageInfo.isIsFirstPage());
+                    corporationPageInfo.setIsLastPage(userInfoPageInfo.isIsLastPage());
+                    corporationPageInfo.setNavigateFirstPage(userInfoPageInfo.getNavigateFirstPage());
+                    corporationPageInfo.setNavigateLastPage(userInfoPageInfo.getNavigateLastPage());
+                    corporationPageInfo.setNavigatePages(userInfoPageInfo.getNavigatePages());
+                    corporationPageInfo.setNavigatepageNums(userInfoPageInfo.getNavigatepageNums());
+                    corporationPageInfo.setNextPage(userInfoPageInfo.getNextPage());
+                    corporationPageInfo.setPageNum(userInfoPageInfo.getPageNum());
+                    corporationPageInfo.setPageSize(userInfoPageInfo.getPageSize());
+                    corporationPageInfo.setPages(userInfoPageInfo.getPages());
+                    corporationPageInfo.setPrePage(userInfoPageInfo.getPrePage());
+                    corporationPageInfo.setSize(userInfoPageInfo.getSize());
+                    corporationPageInfo.setStartRow(userInfoPageInfo.getStartRow());
+                    corporationPageInfo.setTotal(userInfoPageInfo.getTotal());
                 } else {
-                    corporationList = null;
+                    corporationPageInfo = null;
                 }
             } else {
-                corporationList = null;
+                corporationPageInfo = null;
             }
         }
-        return corporationList;
+        return corporationPageInfo;
     }
 
     @Override

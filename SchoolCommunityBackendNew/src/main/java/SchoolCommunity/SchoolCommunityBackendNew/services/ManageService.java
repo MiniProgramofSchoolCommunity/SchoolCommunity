@@ -3,14 +3,13 @@ package SchoolCommunity.SchoolCommunityBackendNew.services;
 import SchoolCommunity.SchoolCommunityBackendNew.entity.Status;
 import SchoolCommunity.SchoolCommunityBackendNew.model.Community;
 import SchoolCommunity.SchoolCommunityBackendNew.model.Corporation;
-
-import java.util.List;
+import com.github.pagehelper.PageInfo;
 
 public interface ManageService {
 
-    List<Community> getCommunityRequestInfo(long userid, int type);
+    PageInfo<Community> getCommunityRequestInfo(long userid, int type, int pageNum);
 
-    List<Corporation> getCorporationRequestInfo(long userid, int type);
+    PageInfo<Corporation> getCorporationRequestInfo(long userid, int type, int pageNum);
 
     Status verify(long managerid, long userid);
 

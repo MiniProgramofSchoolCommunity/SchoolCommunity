@@ -32,7 +32,7 @@ public class BrowseServiceImpl implements BrowseService {
     private ActivityNeededMapper activityNeededMapper;
 
     @Override
-    public ArrayList<ActivityBrief> getActivityListByPage(int pageNum, int pageSize) {
+    public PageInfo<ActivityBrief> getActivityListByPage(int pageNum, int pageSize) {
         ActivityBasicInfoExample activityBasicInfoExample = new ActivityBasicInfoExample();
         ActivityBasicInfoExample.Criteria activityBasicInfoCrteria = activityBasicInfoExample.createCriteria();
 
@@ -83,7 +83,25 @@ public class BrowseServiceImpl implements BrowseService {
                 }
                 activityBriefArrayList.add(activityBrief);
             }
-            return activityBriefArrayList;
+            PageInfo<ActivityBrief> activityBriefPageInfo = new PageInfo<>(activityBriefArrayList);
+            activityBriefPageInfo.setEndRow(activityBasicInfoPageInfo.getEndRow());
+            activityBriefPageInfo.setHasNextPage(activityBasicInfoPageInfo.isHasNextPage());
+            activityBriefPageInfo.setHasPreviousPage(activityBasicInfoPageInfo.isHasPreviousPage());
+            activityBriefPageInfo.setIsFirstPage(activityBasicInfoPageInfo.isIsFirstPage());
+            activityBriefPageInfo.setIsLastPage(activityBasicInfoPageInfo.isIsLastPage());
+            activityBriefPageInfo.setNavigateFirstPage(activityBasicInfoPageInfo.getNavigateFirstPage());
+            activityBriefPageInfo.setNavigateLastPage(activityBasicInfoPageInfo.getNavigateLastPage());
+            activityBriefPageInfo.setNavigatePages(activityBasicInfoPageInfo.getNavigatePages());
+            activityBriefPageInfo.setNavigatepageNums(activityBasicInfoPageInfo.getNavigatepageNums());
+            activityBriefPageInfo.setNextPage(activityBasicInfoPageInfo.getNextPage());
+            activityBriefPageInfo.setPageNum(activityBasicInfoPageInfo.getPageNum());
+            activityBriefPageInfo.setPageSize(activityBasicInfoPageInfo.getPageSize());
+            activityBriefPageInfo.setPages(activityBasicInfoPageInfo.getPages());
+            activityBriefPageInfo.setPrePage(activityBasicInfoPageInfo.getPrePage());
+            activityBriefPageInfo.setSize(activityBasicInfoPageInfo.getSize());
+            activityBriefPageInfo.setStartRow(activityBasicInfoPageInfo.getStartRow());
+            activityBriefPageInfo.setTotal(activityBasicInfoPageInfo.getTotal());
+            return activityBriefPageInfo;
         }
 
         return null;

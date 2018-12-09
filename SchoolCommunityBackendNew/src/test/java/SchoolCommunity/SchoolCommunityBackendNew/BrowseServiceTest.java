@@ -6,13 +6,13 @@ import SchoolCommunity.SchoolCommunityBackendNew.mappers.CommunityMapper;
 import SchoolCommunity.SchoolCommunityBackendNew.model.ActivityBasicInfo;
 import SchoolCommunity.SchoolCommunityBackendNew.services.BrowseService;
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
-import java.util.List;
 
 public class BrowseServiceTest extends TestClass {
 
@@ -27,7 +27,7 @@ public class BrowseServiceTest extends TestClass {
 
     @Test
     @Transactional
-    @Rollback(false)
+    @Rollback()
     public void getActivituList() {
         ActivityBasicInfo activityBasicInfo = new ActivityBasicInfo();
         activityBasicInfo.setActivityname("wht");
@@ -51,7 +51,7 @@ public class BrowseServiceTest extends TestClass {
         for (int i = 0; i < 10; ++i) {
             activityBasicInfoMapper.insert(activityBasicInfo);
         }
-        List<ActivityBrief> list = browseService.getActivityListByPage(1, 10);
+        PageInfo<ActivityBrief> list = browseService.getActivityListByPage(1, 10);
         System.out.println(JSON.toJSONString(list));
     }
 

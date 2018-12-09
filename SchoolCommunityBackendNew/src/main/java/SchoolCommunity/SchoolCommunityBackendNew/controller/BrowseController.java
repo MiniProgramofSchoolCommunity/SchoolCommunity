@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +31,7 @@ public class BrowseController {
     public String getActivityList(@RequestBody JSONObject jsonParams) throws ServletException {
         int pageNum = jsonParams.getInteger("pageNum");
         int pageSize = 10;
-        ArrayList<ActivityBrief> activityBriefArrayList = browseService.getActivityListByPage(pageNum, pageSize);
+        PageInfo<ActivityBrief> activityBriefArrayList = browseService.getActivityListByPage(pageNum, pageSize);
 
         return JSON.toJSONString(activityBriefArrayList);
     }

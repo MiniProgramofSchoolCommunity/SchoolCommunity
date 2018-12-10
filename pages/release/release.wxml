@@ -9,19 +9,19 @@
    <input class="weui-input" name="nickname" placeholder="请输入活动名称" value="" bindinput='nameGet'/>    
    </view>
    </view> 
-<!-- <view class="weui-cell weui-cell_input"> 
-   <view class="weui-cell__hd">  
-         <view class="nickname">时间</view> 
-   </view>   
-   <view class="weui-cell__bd">        
-   <input class="weui-input" name="nickname" placeholder="请输入时间" value=""/>    
-   </view>
-   </view>  -->
    <view class="section">
   <view class="section__title">日期选择器</view>
-  <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+  <picker mode="date" value="{{date}}"  bindchange="bindDateChange">
     <view class="picker">
       当前选择: {{date}}
+    </view>
+  </picker>
+</view>
+<view class="section">
+  <view class="section__title">时间选择器</view>
+  <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+    <view class="picker">
+      当前选择: {{time}}
     </view>
   </picker>
 </view>
@@ -34,14 +34,6 @@
    <input class="weui-input" name="nickname" placeholder="请输入地点" value="" bindinput='placeGet'/>    
    </view>
    </view> 
-   <!-- <view class="weui-cell weui-cell_input"> 
-   <view class="weui-cell__hd">  
-         <view class="nickname">主办方</view> 
-   </view>   
-   <view class="weui-cell__bd">        
-   <input class="weui-input" name="nickname" placeholder="请输入主办发" value=""/>    
-   </view>
-   </view>  -->
 <view class="weui-cell weui-cell_input"> 
    <view class="weui-cell__hd">  
          <view class="nickname">需求简介</view> 
@@ -58,53 +50,8 @@
    <input class="weui-input" name="nickname" placeholder="请输入活动简介" value="" bindinput='actGet'/>    
    </view>
    </view> 
-   <!-- <view class="weui-cell weui-cell_input">    
-   <view class="weui-cell__hd">      
-     <view class="email">社团名称</view>   
-      </view>    
-      <view class="weui-cell__bd"> 
-       <input class="weui-input" name="email" placeholder="请输入社团名称" value=""/>   
-        </view>
-        </view>
-
-     <view class="weui-cell weui-cell_input">    
-     <view class="weui-cell__hd">       
-      <view class="idcard">社团等级</view>   
-       </view>   
-        <view class="weui-cell__bd">        
-        <input class="weui-input" name="idcard" placeholder="请输入社团等级" value=""/>    
-        </view>
-        </view>   
-
-      <view class="weui-cell weui-cell_input">    
-     <view class="weui-cell__hd">       
-      <view class="id">社团联系人</view>   
-       </view>   
-        <view class="weui-cell__bd">        
-        <input class="weui-input" name="id" placeholder="请选择社团联系人姓名" value=""/>    
-        </view>
-        </view>
-
-     <view class="weui-cell weui-cell_input">    
-     <view class="weui-cell__hd">       
-      <view class="password">社团负责人</view>   
-       </view>   
-        <view class="weui-cell__bd">        
-        <input class="weui-input" type="password" name="password"  placeholder="请输入社团负责人姓名" value=""/>    
-        </view>
-        </view>   -->
-
-<!-- <view class="weui-cell weui-cell_input">   
- <view class="weui-label">性别</view> 
-  <input class="weui-input" name='sex'  value='{{sex}}'/>    <view class='weui-cell_ft'>       
-   <switch checked bindchange='switch1Change'></switch>  
-     </view>
-     </view> -->
-     
-
  <view class="button-sp-area">   
  <text>\n\n\n\n\n\n</text> 
    <button class="quedingbtn" type="primary" form-type='submit' bindtap='queding' plain="true">确 定 </button>       
-    <!-- <button class="fanhuibtn" type="primary"  bindtap='fanhui' plain="true">返 回</button>  -->
     </view> 
 

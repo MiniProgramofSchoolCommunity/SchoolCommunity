@@ -1,0 +1,16 @@
+<view>
+  <view wx:for="{{newInfo}}">
+    <view>
+      <text>{{item.address}}\n</text>
+      <text>{{item.cintro}}\n</text>
+      <text>{{item.cleaderidcard}}\n</text>
+      <text>{{item.cleadername}}\n</text>
+      <text>{{item.cleadernum}}\n</text>
+      <text>{{item.cname}}\n</text>
+      <text>{{item.contactsname}}\n</text>
+      <text>{{item.contactsnum}}\n</text>
+      <text>{{item.cregisnum}}\n</text>
+      <button bindtap='confirm' data-id='{{item.userid}}'>确定</button>
+    </view>
+  </view>
+</view>

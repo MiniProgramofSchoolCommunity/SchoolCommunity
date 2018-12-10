@@ -1,10 +1,8 @@
 // pages/release/release.js
 const app=getApp()
+var dateTo
+var timeTo
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     name:'',
     date: '2018-12-04',
@@ -12,12 +10,9 @@ Page({
     require_intro:'',
     activity_intro:'',
     identifyFlag:false,
-    activityType:{}
+    activityType:{},
+    time: '12:00',
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   nameGet:function(e){
     this.setData({
       name:e.detail.value
@@ -39,10 +34,23 @@ Page({
     })
   },
   bindDateChange: function (e) {
+    console.log(e)
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value
     })
+    dateTo=new Date(this.data.date)
+    console.log(dateTo)
+  },
+  bindTimeChange: function (e) {
+    console.log(e)
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      time: e.detail.value
+    })
+    timeTo=new Date(this.data.date)
+    timeTo.setHours(parseInt(this.data.time))
+    console.log(timeTo)
   },
   queding:function(){
     var that=this
@@ -56,9 +64,6 @@ Page({
     }
     wx.request({   //fetch FLAG
       url: 'http://localhost:80/user/activity/publish.do',      //todo
-      // header:{
-
-      // },
       data:{
         userid:app.globalData.userid,
         activityType: that.data.activityType,
@@ -66,12 +71,11 @@ Page({
         activityAddress:that.data.place,
         activityIntro: that.data.activity_intro,
         requirement: that.data.require_intro,
+        time:timeTo,
+        date:dateTo
       },
       method:'post',
       success:function(res){
-        // that.setData({
-        //   identifyFlag:res.data.Flag    //todo
-        // })
         if(res.data.STATUS=="SUCCESS"){    //if had identified
           wx.showToast({
             title: '您已成功发布消息',
@@ -104,53 +108,4 @@ Page({
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

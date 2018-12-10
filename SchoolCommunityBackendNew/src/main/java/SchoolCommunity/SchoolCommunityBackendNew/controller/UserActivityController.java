@@ -54,10 +54,10 @@ public class UserActivityController {
         activityBasicInfo.setPublisherid(id);
         activityBasicInfo.setActivityintro(jsonParams.getString("activityIntro"));
         // fixme 时间
-//        activityBasicInfo.setDate(jsonParams.getDate("date"));
-//        activityBasicInfo.setTime(jsonParams.getDate("time"));
-        activityBasicInfo.setTime(new Date());
-        activityBasicInfo.setDate(new Date());
+        activityBasicInfo.setDate(jsonParams.getDate("date"));
+        activityBasicInfo.setTime(jsonParams.getDate("time"));
+//        activityBasicInfo.setTime(new Date());
+//        activityBasicInfo.setDate(new Date());
         if (activityBasicInfo.getActivityname() == null || activityBasicInfo.getActivityaddress() == null
                 || activityBasicInfo.getActivityintro() == null || activityBasicInfo.getDate() == null
                 || activityBasicInfo.getTime() == null) {

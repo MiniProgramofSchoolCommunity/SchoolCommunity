@@ -1,0 +1,9 @@
+<view class="goods-view">
+  <view class="goods_msg">
+    <text class="goods_name">{{detail_info.activityAddress}}\n</text>
+    <text class="goods_price">{{detail_info.activityIntro}}\n</text>
+    <text class="goods_price">{{detail_info.activityName}}\n</text>
+    <text class="goods_price">{{detail_info.contactsName}}\n</text>
+    <text class="goods_price">{{detail_info.contactsNum}}\n</text>
+  </view>
+</view>

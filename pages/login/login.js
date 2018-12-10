@@ -58,6 +58,11 @@ Page({
               url: '/pages/superUser/superUser',
             })
           }
+          if (app.globalData.usertype == 1){
+            wx.navigateTo({
+              url: '/pages/superUnion/superUnion',
+            })
+          }
           else{
           wx.switchTab({
             url: '/pages/index/index',

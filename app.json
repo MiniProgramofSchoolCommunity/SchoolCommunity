@@ -2,7 +2,7 @@
   "pages":[
     "pages/login/login",
     "pages/release/release",
-    
+    "pages/releaseSposor/releaseSposor",
     "pages/superUser/superUser",
     "pages/superUnion/superUnion",
     "pages/roles/roles",
@@ -20,7 +20,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "Community&&Sponsor",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {

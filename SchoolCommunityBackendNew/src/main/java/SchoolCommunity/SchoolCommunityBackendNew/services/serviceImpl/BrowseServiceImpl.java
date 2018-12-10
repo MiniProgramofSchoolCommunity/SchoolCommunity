@@ -65,7 +65,8 @@ public class BrowseServiceImpl implements BrowseService {
             for (Corporation corporation : corporationList) {
                 corporationMap.put(corporation.getUserid(), corporation);
             }
-
+            System.out.println(JSON.toJSONString(communityMap));
+            System.out.println(JSON.toJSONString(corporationMap));
             ArrayList<ActivityBrief> activityBriefArrayList = new ArrayList<>();
             for (ActivityBasicInfo a : basicInfoList) {
                 ActivityBrief activityBrief = new ActivityBrief();
@@ -117,7 +118,6 @@ public class BrowseServiceImpl implements BrowseService {
     public ActivityDetail getActivityDetail(long activityId, int type) {
         ActivityBasicInfo activityBasicInfo = activityBasicInfoMapper.selectByPrimaryKey(activityId);
         ActivityDetail activityDetail = null;
-        System.out.println(activityId+" "+type);
         if (activityBasicInfo != null) {
             activityDetail = new ActivityDetail();
             if (type == 0) {
@@ -138,7 +138,6 @@ public class BrowseServiceImpl implements BrowseService {
                     activityDetail.setSponsor(requirement.getSname());
                     activityDetail.setType(0);
 
-                    System.out.println(JSON.toJSONString(activityDetail));
                 } else {
                     activityDetail = null;
                 }

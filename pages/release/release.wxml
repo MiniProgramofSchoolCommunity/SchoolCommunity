@@ -1,57 +1,140 @@
 <!--pages/release/release.wxml-->  
-<text class='one'>填写相关消息</text>  
+<text class='one'>填写相关消息</text> 
+<!-- 这是社团的渲染  -->
+<view wx:if="{{usertype==2}}"> 
 
-<view class="weui-cell weui-cell_input"> 
-   <view class="weui-cell__hd">  
-         <view class="nickname">活动名称</view> 
-   </view>   
-   <view class="weui-cell__bd">        
-   <input class="weui-input" name="nickname" placeholder="请输入活动名称" value="" bindinput='nameGet'/>    
-   </view>
-   </view> 
-   <view class="section">
-  <view class="section__title">日期选择器</view>
-  <picker mode="date" value="{{date}}"  bindchange="bindDateChange">
-    <view class="picker">
-      当前选择: {{date}}
+  <view class="weui-cell weui-cell_input"> 
+    <view class="weui-cell__hd">  
+          <view class="nickname">活动名称</view> 
+    </view>   
+    <view class="weui-cell__bd">        
+          <input class="weui-input" name="nickname" placeholder="请输入活动名称" value="" bindinput='nameGet'/>    
     </view>
-  </picker>
-</view>
-<view class="section">
-  <view class="section__title">时间选择器</view>
-  <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
-    <view class="picker">
+  </view> 
+
+  <view class="section">
+    <view class="section__title">日期选择器</view>
+    <picker mode="date" value="{{date}}"  bindchange="bindDateChange">
+      <view class="weui-input">
+        当前选择: {{date}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="section">
+    <view class="section__title">时间选择器</view>
+    <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+      <view class="weui-input">
       当前选择: {{time}}
-    </view>
-  </picker>
-</view>
+      </view>
+    </picker>
+  </view>
 
-   <view class="weui-cell weui-cell_input"> 
-   <view class="weui-cell__hd">  
-         <view class="nickname">地点</view> 
-   </view>   
-   <view class="weui-cell__bd">        
-   <input class="weui-input" name="nickname" placeholder="请输入地点" value="" bindinput='placeGet'/>    
-   </view>
-   </view> 
-<view class="weui-cell weui-cell_input"> 
-   <view class="weui-cell__hd">  
-         <view class="nickname">需求简介</view> 
-   </view>   
-   <view class="weui-cell__bd">        
-   <input class="weui-input" name="nickname" placeholder="请输入需求简介" value="" bindinput='reqGet'/>    
-   </view>
-   </view>  
-<view class="weui-cell weui-cell_input"> 
-   <view class="weui-cell__hd">  
-         <view class="nickname">活动简介</view> 
-   </view>   
-   <view class="weui-cell__bd">        
-   <input class="weui-input" name="nickname" placeholder="请输入活动简介" value="" bindinput='actGet'/>    
-   </view>
-   </view> 
- <view class="button-sp-area">   
- <text>\n\n\n\n\n\n</text> 
-   <button class="quedingbtn" type="primary" form-type='submit' bindtap='queding' plain="true">确 定 </button>       
-    </view> 
+  <view class="weui-cell weui-cell_input"> 
+    <view class="weui-cell__hd">  
+          <view class="nickname">地点</view> 
+    </view>   
+    <view class="weui-cell__bd">        
+      <input class="weui-input" name="nickname" placeholder="请输入地点" value="" bindinput='placeGet'/>    
+    </view>
+  </view> 
+
+  <view class="weui-cell weui-cell_input"> 
+    <view class="weui-cell__hd">  
+          <view class="nickname">需求简介</view> 
+    </view>   
+    <view class="weui-cell__bd">        
+      <input class="weui-input" name="nickname" placeholder="请输入需求简介" value="" bindinput='reqGet'/>    
+    </view>
+  </view>  
+
+  <view class="weui-cell weui-cell_input"> 
+    <view class="weui-cell__hd">  
+          <view class="nickname">活动简介</view> 
+    </view>   
+    <view class="weui-cell__bd">        
+      <input class="weui-input" name="nickname" placeholder="请输入活动简介" value="" bindinput='actGet'/>    
+    </view>
+  </view> 
+
+  <view class="button-sp-area">   
+    <text>\n\n\n\n\n\n</text> 
+    <button class="quedingbtn" type="primary" form-type='submit' bindtap='queding' plain="true">确 定 </button>       
+  </view>
+
+</view> 
+
+
+<!-- 这是企业的渲染  -->
+<view wx:if="{{usertype==3}}"> 
+
+  <view class="weui-cell weui-cell_input"> 
+    <view class="weui-cell__hd">  
+          <view class="nickname">活动名称</view> 
+    </view>   
+    <view class="weui-cell__bd">        
+          <input class="weui-input" name="nickname" placeholder="请输入活动名称" value="" bindinput='nameGet'/>    
+    </view>
+  </view> 
+
+  <view class="section">
+    <view class="section__title">日期选择器</view>
+    <picker mode="date" value="{{date}}"  bindchange="bindDateChange">
+      <view class="weui-input">
+        当前选择: {{date}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="section">
+    <view class="section__title">时间选择器</view>
+    <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+      <view class="weui-input">
+      当前选择: {{time}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="weui-cell weui-cell_input"> 
+    <view class="weui-cell__hd">  
+          <view class="nickname">地点</view> 
+    </view>   
+    <view class="weui-cell__bd">        
+      <input class="weui-input" name="nickname" placeholder="请输入地点" value="" bindinput='placeGet'/>    
+    </view>
+  </view> 
+
+  <view class="weui-cell weui-cell_input"> 
+    <view class="weui-cell__hd">  
+          <view class="nickname">需求简介</view> 
+    </view>   
+    <view class="weui-cell__bd">        
+      <input class="weui-input" name="nickname" placeholder="请输入需求简介" value="" bindinput='reqGet'/>    
+    </view>
+  </view> 
+
+  <view class="weui-cell weui-cell_input"> 
+    <view class="weui-cell__hd">  
+          <view class="nickname">赞助要求简介</view> 
+    </view>   
+    <view class="weui-cell__bd">        
+      <input class="weui-input" name="nickname" placeholder="请输入赞助要求简介" value="" bindinput='sponGet'/>    
+    </view>
+  </view>
+
+  <view class="weui-cell weui-cell_input"> 
+    <view class="weui-cell__hd">  
+          <view class="nickname">活动简介</view> 
+    </view>   
+    <view class="weui-cell__bd">        
+      <input class="weui-input" name="nickname" placeholder="请输入活动简介" value="" bindinput='actGet'/>    
+    </view>
+  </view> 
+
+  <view class="button-sp-area">   
+    <text>\n\n\n\n\n\n</text> 
+    <button class="quedingbtn" type="primary" form-type='submit' bindtap='queding' plain="true">确 定 </button>       
+  </view>
+
+</view>
 

@@ -64,6 +64,7 @@ public class UserActivityController {
             resultStatus.put("STATUS", Status.PARAMSERROR.getName());
         } else {
             int type = jsonParams.getInteger("activityType");
+            System.out.println(type);
             if (type == 0) {
                 activityBasicInfo.setType(0);
                 Requirement requirement = new Requirement();

@@ -45,8 +45,8 @@ Page({
         success:function(res){
           console.log(res);
           if(res.data.STATUS == 'SUCCESS'){
-            app.globalData.userid=res.data.USERID,
-            app.globalData.usertype=res.data.TYPE,
+            app.globalData.userid=parseInt(res.data.USERID),
+            app.globalData.usertype=parseInt(res.data.TYPE),
             wx.showToast({
               title: '登录成功',
               icon: 'success',

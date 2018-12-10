@@ -9,7 +9,6 @@ Page({
       ],
     newInfo:[],
     isFromSearch: true,   // 用于判断searchSongList数组是不是空数组，默认true，空的数组
-    //pageNum:3,
     searchPageNum: 1,// 设置加载的第几次，默认是第一次
     searchLoading: false, //"上拉加载"的变量，默认false，隐藏
     searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏
@@ -65,7 +64,6 @@ Page({
           });
         }
         console.log(res)
-        //console.log(that.data.newInfo)
       }
     })
   },

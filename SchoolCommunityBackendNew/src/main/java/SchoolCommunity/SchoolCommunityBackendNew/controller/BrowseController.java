@@ -32,7 +32,6 @@ public class BrowseController {
         int pageNum = jsonParams.getInteger("pageNum");
         int pageSize = 10;
         PageInfo<ActivityBrief> activityBriefArrayList = browseService.getActivityListByPage(pageNum, pageSize);
-
         return JSON.toJSONString(activityBriefArrayList);
     }
 

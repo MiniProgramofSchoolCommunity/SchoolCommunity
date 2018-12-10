@@ -1,6 +1,8 @@
-﻿-- 先使用超级用户在该database下添加插件
+-- 先使用超级用户在该database下添加插件
 -- create extension pgcrypto;
 -- 可不使用该插件，在java后台处理
+-- 使用UFT-8输入
+
 create table log(
 userid serial8,
 username varchar(20),

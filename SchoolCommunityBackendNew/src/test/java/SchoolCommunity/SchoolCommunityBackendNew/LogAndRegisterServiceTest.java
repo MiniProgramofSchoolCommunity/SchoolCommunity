@@ -24,7 +24,7 @@ public class LogAndRegisterServiceTest extends TestClass {
     public void register() {
         Log user = new Log();
         UserInfo userInfo = new UserInfo();
-        userInfo.setEmail("1234");
+        userInfo.setEmail("2");
         userInfo.setRoleid(1);
         user.setUsername("sxx");
         user.setPwd(Encrypt.encrypt("123"));

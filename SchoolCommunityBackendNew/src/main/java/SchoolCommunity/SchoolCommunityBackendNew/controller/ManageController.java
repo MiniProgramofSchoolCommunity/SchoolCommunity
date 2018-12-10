@@ -60,10 +60,10 @@ public class ManageController {
     @ResponseBody
     public String verify(@RequestBody JSONObject jsonParams) throws ServletException {
         Map<String, String> resultStatus = new HashMap<>();
-        int managerid = jsonParams.getInteger("manager");
-        int interviewee = jsonParams.getInteger("interviewee");
-        Status serviecStatus = manageService.verify(managerid, interviewee);
-        switch (serviecStatus) {
+        long managerid = jsonParams.getLong("manager");
+        long interviewee = jsonParams.getLong("interviewee");
+        Status serviceStatus = manageService.verify(managerid, interviewee);
+        switch (serviceStatus) {
             case SUCCESS:
                 resultStatus.put("STATUS", Status.SUCCESS.getName());
                 break;

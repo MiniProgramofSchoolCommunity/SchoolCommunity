@@ -168,9 +168,7 @@ public class ManageServiceImpl implements ManageService {
     public Status verify(long managerid, long userid) {
         Status status;
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(managerid);
-        if (userInfo == null || userInfo.getRoleid() != 0 || userInfo.getRoleid() != 1) {
-            status = Status.NOPERMISSION;
-        } else {
+        if (userInfo != null && (userInfo.getRoleid() == 0 || userInfo.getRoleid() == 1)) {
             UserInfo interviewee = userInfoMapper.selectByPrimaryKey(userid);
             if (interviewee == null || interviewee.getSent() == 0) {
                 status = Status.NOTEXISTS;
@@ -185,6 +183,8 @@ public class ManageServiceImpl implements ManageService {
                     status = Status.SUCCESS;
                 }
             }
+        } else {
+            status = Status.NOPERMISSION;
         }
         return status;
     }

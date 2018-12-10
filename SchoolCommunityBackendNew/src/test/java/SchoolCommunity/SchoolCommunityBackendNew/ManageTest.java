@@ -1,8 +1,6 @@
 package SchoolCommunity.SchoolCommunityBackendNew;
 
 import SchoolCommunity.SchoolCommunityBackendNew.mappers.ManageMapper;
-import SchoolCommunity.SchoolCommunityBackendNew.model.Manage;
-import SchoolCommunity.SchoolCommunityBackendNew.model.ManageExample;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -17,10 +15,10 @@ public class ManageTest extends TestClass {
     @Transactional
     @Rollback()
     public void insertIntoManage(){
-        Manage manage;
-        manage.setInterviwee();
-        manage.setManageruserid();
-
-        manageMapper.insert(manage);
+//        Manage manage;
+//        manage.setInterviwee();
+//        manage.setManageruserid();
+//
+//        manageMapper.insert(manage);
     }
 }

@@ -65,8 +65,6 @@ public class BrowseServiceImpl implements BrowseService {
             for (Corporation corporation : corporationList) {
                 corporationMap.put(corporation.getUserid(), corporation);
             }
-            System.out.println(JSON.toJSONString(communityMap));
-            System.out.println(JSON.toJSONString(corporationMap));
             ArrayList<ActivityBrief> activityBriefArrayList = new ArrayList<>();
             for (ActivityBasicInfo a : basicInfoList) {
                 ActivityBrief activityBrief = new ActivityBrief();

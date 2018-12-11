@@ -1,9 +1,14 @@
 <view class="goods-view">
   <view class="goods_msg">
-    <text class="goods_name">{{detail_info.activityAddress}}\n</text>
-    <text class="goods_price">{{detail_info.activityIntro}}\n</text>
-    <text class="goods_price">{{detail_info.activityName}}\n</text>
-    <text class="goods_price">{{detail_info.contactsName}}\n</text>
-    <text class="goods_price">{{detail_info.contactsNum}}\n</text>
+    <text class="goods_name">{{"活动地点："+detail_info.activityAddress}}\n</text>
+    <text class="goods_price">{{"活动介绍："+detail_info.activityIntro}}\n</text>
+    <text class="goods_price">{{"活动名称："+detail_info.activityName}}\n</text>
+    <text class="goods_price">{{"活动联系人："+detail_info.contactsName}}\n</text>
+    <text class="goods_price">{{"活动联系人电话："+detail_info.contactsNum}}\n</text>
+    <text class="goods_price">{{"活动负责人："+detail_info.leaderName}}\n</text>
+    <text class="goods_price">{{"活动负责人电话："+detail_info.leaderNum}}\n</text>
+    <text class="goods_price">{{"活动等级："+detail_info.level}}\n</text>
+    <text class="goods_price">{{"活动需求："+detail_info.requirementOfSponsorship}}\n</text>
+    <text class="goods_price">{{"活动时间："+time}}\n</text>
   </view>
 </view>

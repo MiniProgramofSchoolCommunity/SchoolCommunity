@@ -60,9 +60,12 @@ swiper.swiper {
   flex-flow: row wrap;
   align-content: flex-start;
   border-top:1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   line-height: 1.5;
 }
 .info-item{
+  border-top:1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   display: flex;
   box-sizing: border-box;
   padding: 20rpx;
@@ -74,4 +77,16 @@ swiper.swiper {
 }
 .detail_info{
   flex:inrow;
+}
+.image{
+  margin-left: 0;
+  height: 50px;
+  width: 50px;
+  margin-top: 15px
+}
+.info_detail{
+  margin-left:10px;
+}
+.key{
+  size: 10px
 }

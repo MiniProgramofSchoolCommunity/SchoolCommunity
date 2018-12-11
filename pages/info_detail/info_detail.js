@@ -1,7 +1,8 @@
 //var infoData = require('../../utils/infoData.js');
 Page({
   data: {
-    detail_info:{}
+    detail_info:{},
+    time:{}
   },
   onLoad: function (options) {
     var that = this;
@@ -17,7 +18,15 @@ Page({
       success:function(res){
         console.log(res)
         that.setData({
-          detail_info: res.data
+          detail_info: res.data,
+          time:res.data.date
+        })
+        var date = new Date()
+        date.setTime(parseInt(that.data.time))
+        console.log(date)
+        date=date.toLocaleString()
+        that.setData({
+          time:date
         })
       }
     })

@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="index-body">
+
   <swiper class='swiper' indicator-dots="true" autoplay="true" interval="3000" duration="1000" indicator-color="#e8e8e8" indicator-active-color="#a9dd3c">
     <block wx:for="{{carousel}}">
       <swiper-item>
@@ -7,22 +8,35 @@
       </swiper-item>
     </block>
   </swiper>
-   <view class='index-info'>
-    <view class='info-title'>信息</view>
+
+  <view class='index-info'>
+    <view class='info-title'>信息大厅</view>
     <view class='info-detail'>
-      <scroll-view scroll-y='true' bindscrolltolower='searchScrollLower' style='height:{{scrollHeight}}px' >
-       <navigator url='../info_detail/info_detail?id={{item.id}}&atype={{item.type}}' class='info-item' wx:for="{{newInfo}}">
-        <view>
-          <text class='relater'>\t{{item.activityName}}\t</text>
-          <text class='leader'>{{item.address}}\t</text>
-          <text class='name'>{{item.sLevel}}\t\n\n</text>
-          <text class='requirement'>{{item.sponsorName}}\t</text> 
-          <text class='level'>{{item.type}}\t</text>
-        </view>
-      </navigator>
-      <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
-      <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
-      </scroll-view> 
+        <scroll-view scroll-y='true' bindscrolltolower='searchScrollLower' style='height:{{scrollHeight}}px' >
+        <navigator url='../info_detail/info_detail?id={{item.id}}&atype={{item.type}}' class='info-item' wx:for="{{newInfo}}">
+          <view  wx:if="{{item.type==0}}">
+            <image class='image' src='/pages/images/community.jpg'></image>
+          </view>
+          <view   wx:elif="{{item.type==1}}">
+            <image class='image' src='/pages/images/sponsor.jpg'></image>
+          </view>
+          <view class='info_detail'>
+            <view class='level' wx:if='{{item.type==0}}'><text class='key'>活动类型:</text>社团赞助需求\n</view>
+            <view class='level' wx:if='{{item.type==1}}'><text class='key'>活动类型:</text>企业赞助要求\n</view>
+            <text class='key'>活动名称:</text><text class='relater'>{{item.activityName}}\n</text>
+            <view wx:if="{{item.type==0}}"><text class='key'>主办方\t:</text><text>{{item.sponsorName}}</text></view>
+            <view wx:elif="{{item.type==1}}"><text class='key'>主办方\t:</text><text>{{item.sponsorName}}</text></view>
+            <text class='key'>活动地点:</text><text class='leader'>{{item.address}}\n</text>
+            <view class='sLevel' hidden='{{item.type}}'>
+              <view wx:if="{{item.sLevel==0}}"><text class='key'>活动等级:</text><text>校级</text></view>
+              <view wx:elif="{{item.sLevel==1}}"><text class='key'>活动等级:</text><text>校级</text></view>
+            </view>
+          </view>
+        </navigator>
+        <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
+        <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+        </scroll-view> 
     </view>
   </view> 
+
 </view>

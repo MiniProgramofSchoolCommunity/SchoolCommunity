@@ -43,7 +43,7 @@ Page({
         }
         else if(res.data.STATUS =="VERIFIED"){
           wx.showToast({
-            title: '确认失败3',
+            title: '已认证过此用户',
             duration: 2000
           })
         }

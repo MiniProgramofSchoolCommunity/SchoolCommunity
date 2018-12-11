@@ -87,4 +87,38 @@ public class UserActivityServiceImpl implements UserActivityService {
         }
         return Status.SUCCESS;
     }
+
+    @Override
+    public Status deleteActivity(long activityId, long userId) {
+        Status result;
+        ActivityBasicInfo activityBasicInfo = activityBasicInfoMapper.selectByPrimaryKey(activityId);
+        if (activityBasicInfo != null) {
+            if (activityBasicInfo.getPublisherid() == userId) {
+                if (activityBasicInfo.getType() == 0) {
+                    int row = requirementMapper.deleteByPrimaryKey(activityId);
+                    if (row != 1) {
+                        result = Status.FAILED;
+                        return result;
+                    }
+                } else {
+                    int row = activityNeededMapper.deleteByPrimaryKey(activityId);
+                    if (row != 1) {
+                        result = Status.FAILED;
+                        return result;
+                    }
+                }
+                int row = activityBasicInfoMapper.deleteByPrimaryKey(activityId);
+                if (row == 1) {
+                    result = Status.SUCCESS;
+                } else {
+                    result = Status.FAILED;
+                }
+            } else {
+                result = Status.NOPERMISSION;
+            }
+        } else {
+            result = Status.NOTEXISTS;
+        }
+        return result;
+    }
 }

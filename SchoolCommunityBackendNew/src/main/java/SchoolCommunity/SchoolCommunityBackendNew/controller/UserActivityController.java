@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,11 +52,8 @@ public class UserActivityController {
         activityBasicInfo.setActivityaddress(jsonParams.getString("activityAddress"));
         activityBasicInfo.setPublisherid(id);
         activityBasicInfo.setActivityintro(jsonParams.getString("activityIntro"));
-        // fixme 时间
         activityBasicInfo.setDate(jsonParams.getDate("date"));
         activityBasicInfo.setTime(jsonParams.getDate("time"));
-//        activityBasicInfo.setTime(new Date());
-//        activityBasicInfo.setDate(new Date());
         if (activityBasicInfo.getActivityname() == null || activityBasicInfo.getActivityaddress() == null
                 || activityBasicInfo.getActivityintro() == null || activityBasicInfo.getDate() == null
                 || activityBasicInfo.getTime() == null) {
@@ -93,4 +89,26 @@ public class UserActivityController {
         return JSON.toJSONString(resultStatus);
     }
 
+    @RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+    @ResponseBody
+    public String delete(@RequestBody JSONObject jsonParams) throws ServletException {
+        Map<String, String> resMap = new HashMap<>();
+        long activityId = jsonParams.getLong("activityid");
+        long userId = jsonParams.getLong("userid");
+        Status resultStatus = userActivityService.deleteActivity(activityId, userId);
+        switch (resultStatus) {
+            case FAILED:
+                resMap.put("STATUS", Status.FAILED.getName());
+                break;
+            case NOTEXISTS:
+                resMap.put("STATUS", Status.NOTEXISTS.getName());
+                break;
+            case SUCCESS:
+                resMap.put("STATUS", Status.SUCCESS.getName());
+                break;
+            case NOPERMISSION:
+                resMap.put("STATUS", Status.NOPERMISSION.getName());
+        }
+        return JSON.toJSONString(resMap);
+    }
 }

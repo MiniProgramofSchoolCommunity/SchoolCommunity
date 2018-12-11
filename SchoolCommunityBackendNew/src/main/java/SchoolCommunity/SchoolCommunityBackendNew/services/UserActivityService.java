@@ -9,4 +9,6 @@ public interface UserActivityService {
     Status publish(ActivityBasicInfo activityBasicInfo, Requirement requirement);
 
     Status publish(ActivityBasicInfo activityBasicInfo, ActivityNeeded activityNeeded);
+
+    Status deleteActivity(long activityId, long userId);
 }

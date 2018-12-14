@@ -1,5 +1,6 @@
 package SchoolCommunity.SchoolCommunityBackendNew.controller;
 
+import SchoolCommunity.SchoolCommunityBackendNew.entity.ActivityBrief;
 import SchoolCommunity.SchoolCommunityBackendNew.entity.Status;
 import SchoolCommunity.SchoolCommunityBackendNew.model.ActivityBasicInfo;
 import SchoolCommunity.SchoolCommunityBackendNew.model.ActivityNeeded;
@@ -8,6 +9,7 @@ import SchoolCommunity.SchoolCommunityBackendNew.services.UserActivityService;
 import SchoolCommunity.SchoolCommunityBackendNew.services.UserService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -110,5 +112,20 @@ public class UserActivityController {
                 resMap.put("STATUS", Status.NOPERMISSION.getName());
         }
         return JSON.toJSONString(resMap);
+    }
+
+    @RequestMapping(value = "/myActivity.do", method = RequestMethod.POST)
+    @ResponseBody
+    public String myActivity(@RequestBody JSONObject jsonParams) throws ServletException {
+        long userid = jsonParams.getLong("userid");
+        int pageNum = jsonParams.getInteger("pageNum");
+        Map<String, String> res = new HashMap<>();
+        PageInfo<ActivityBrief> activityBriefPageInfo = userActivityService.myActivity(userid, pageNum);
+        if (activityBriefPageInfo == null) {
+            res.put("STATUS", Status.FAILED.getName());
+            return JSON.toJSONString(res);
+        } else {
+            return JSON.toJSONString(activityBriefPageInfo);
+        }
     }
 }

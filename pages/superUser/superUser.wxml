@@ -10,7 +10,7 @@
       <text>{{"联系人姓名："+item.contactsname}}\n</text>
       <text>{{"联系人电话："+item.contactsnum}}\n</text>
       <text>{{"统一信用编码："+item.cregisnum}}\n</text>
-      <button bindtap='confirm' data-id='{{item.userid}}'>通过认证</button>
+      <button bindtap='confirm' data-id='{{item.userid}}' >通过认证</button>
     </view>
   </view>
 </view>

@@ -76,6 +76,6 @@ swiper.swiper {
   flex:inrow;
 }
 .identify{
-  border-top:1px solid #66cc33;
-  border-bottom: 1px solid #66cc33;
+  border-top:1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }

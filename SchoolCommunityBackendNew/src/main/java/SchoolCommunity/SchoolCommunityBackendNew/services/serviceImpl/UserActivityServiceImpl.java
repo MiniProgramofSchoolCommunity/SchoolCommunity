@@ -204,8 +204,6 @@ public class UserActivityServiceImpl implements UserActivityService {
                 result.setStartRow(activityBasicInfoPageInfo.getStartRow());
                 result.setTotal(activityBasicInfoPageInfo.getTotal());
             }
-        } else {
-            result = null;
         }
         return result;
     }

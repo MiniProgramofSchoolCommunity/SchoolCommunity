@@ -48,6 +48,9 @@ public class UserActivityController {
         } else if (verifiedStatus == Status.PARAMSERROR) {
             resultStatus.put("STATUS", Status.PARAMSERROR.getName());
             return JSON.toJSONString(resultStatus);
+        } else if (verifiedStatus == Status.SENTED) {
+            resultStatus.put("STATUS", Status.SENTED.getName());
+            return JSON.toJSONString(resultStatus);
         }
         ActivityBasicInfo activityBasicInfo = new ActivityBasicInfo();
         activityBasicInfo.setActivityname(jsonParams.getString("activityName"));

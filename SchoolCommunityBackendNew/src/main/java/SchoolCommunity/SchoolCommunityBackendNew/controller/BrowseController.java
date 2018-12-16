@@ -25,7 +25,6 @@ public class BrowseController {
     @Autowired
     private BrowseService browseService;
 
-    // todo 获取活动简略信息处理
     @RequestMapping(value = "/getActivityList.do", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String getActivityList(@RequestBody JSONObject jsonParams) throws ServletException {
@@ -44,7 +43,6 @@ public class BrowseController {
         return JSON.toJSONString(briefPageInfo);
     }
 
-    // todo 活动详细信息请求
     @RequestMapping(value = "/getActivityDetail.do", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String getActivityDetail(@RequestBody JSONObject jsonParams) {

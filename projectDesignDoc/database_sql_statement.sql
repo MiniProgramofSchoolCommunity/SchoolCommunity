@@ -3,6 +3,8 @@
 -- 可不使用该插件，在java后台处理
 -- 使用UFT-8输入
 
+
+-- 定义系统表和约束关系
 create table log(
 userid serial8,
 username varchar(20),
@@ -118,13 +120,47 @@ token text not null,
 primary key(token)
 );
 
+create table role_authority(
+roleid int not null,
+authorityid int not null,
+primary key(roleid, authorityid),
+foreign key(roleid) references role(roleid),
+foreign key(authorityid) references authority(authorityid)
+);
+
+-- 定义系统角色
 insert into role(roleid,rolename) values(0,'超管');
 insert into role(roleid,rolename) values(1,'社团联');
 insert into role(roleid,rolename) values(2,'社团');
 insert into role(roleid,rolename) values(3,'企业');
+insert into role(roleid, rolename) values(4,'未认证用户');
 
+-- 定义系统权限
 insert into authority(authorityid,authorityname) values(0,'发布');
 insert into authority(authorityid,authorityname) values(1,'删除');
 insert into authority(authorityid,authorityname) values(2,'浏览详细信息');
 insert into authority(authorityid,authorityname) values(3,'审核社团');
 insert into authority(authorityid,authorityname) values(4,'审核企业');
+
+-- 分配用户权限
+insert into role_authority(roleid, authorityid) values(0,0);
+insert into role_authority(roleid, authorityid) values(0,1);
+insert into role_authority(roleid, authorityid) values(0,2);
+insert into role_authority(roleid, authorityid) values(0,3);
+insert into role_authority(roleid, authorityid) values(0,4);
+insert into role_authority(roleid, authorityid) values(1,0);
+insert into role_authority(roleid, authorityid) values(1,1);
+insert into role_authority(roleid, authorityid) values(1,2);
+insert into role_authority(roleid, authorityid) values(1,3);
+insert into role_authority(roleid, authorityid) values(2,0);
+insert into role_authority(roleid, authorityid) values(2,1);
+insert into role_authority(roleid, authorityid) values(2,2);
+insert into role_authority(roleid, authorityid) values(3,0);
+insert into role_authority(roleid, authorityid) values(3,1);
+insert into role_authority(roleid, authorityid) values(3,2);
+
+-- 定义系统管理用户
+insert into log (username, pwd) values('stt','82ug05b311fs6kb56afa3vqsbr5tnfnf');
+insert into userbasicinfo(userid, email, roleid, sent, status) values(1,'123',0,1,1);
+insert into log (username, pwd) values('sxx','82ug05b311fs6kb56afa3vqsbr5tnfnf');
+insert into userbasicinfo(userid, email, roleid, sent, status) values(2,'456',1,1,1);

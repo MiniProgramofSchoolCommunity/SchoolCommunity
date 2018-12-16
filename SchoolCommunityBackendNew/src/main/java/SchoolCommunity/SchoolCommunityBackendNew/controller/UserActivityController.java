@@ -117,7 +117,7 @@ public class UserActivityController {
         return JSON.toJSONString(resMap);
     }
 
-    @RequestMapping(value = "/myActivity.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/myActivity.do", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public String myActivity(@RequestBody JSONObject jsonParams) throws ServletException {
         long userid = jsonParams.getLong("userid");

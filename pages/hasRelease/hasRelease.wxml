@@ -1,2 +1,15 @@
-<!--pages/hasRelease/hasRelease.wxml-->
-<text>pages/hasRelease/hasRelease.wxml</text>
+<view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{info}}" >
+    <navigator class='content' url='../info_detail/info_detail?id={{item.id}}&atype={{atype}}' data-index="{{index}}"  >
+      <view class='column'>
+        <view class='row full_width'>
+          <text style='font-weight: bold;line-height:60rpx;'>活动名称：{{item.activityName}}</text>
+          <text style='margin-left:30rpx;color:gray;line-height:60rpx;'>{{item.a}}</text>
+          <text style='margin-left:20rpx;color:gray;line-height:60rpx;'>{{item.job}}</text>
+        </view>
+        <text style='margin-top:10rpx;color:gray;'>活动地址：{{item.address}}</text>
+      </view>
+    </navigator>
+    <view class="del" catchtap="del" data-index="{{index}}" data-id='{{item.id}}'>删除</view>
+</view>
+
+

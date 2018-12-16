@@ -1,4 +1,5 @@
 //app.js
+import touch from './pages/hasRelease/touch.js'
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -37,5 +38,6 @@ App({
     usertype:{},
     userInfo: null,
     userid:{},
-  }
+  },
+  touch:new touch()
 })

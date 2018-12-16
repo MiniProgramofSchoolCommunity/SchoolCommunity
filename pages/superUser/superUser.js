@@ -8,6 +8,7 @@ Page({
     searchLoading: false, //"上拉加载"的变量，默认false，隐藏
     searchLoadingComplete: false,  //“没有数据”的变量，默认false，隐藏
     scrollHeight: 0,
+    flag:false
     //id:{}
   },
   confirm:function(e){
@@ -22,7 +23,7 @@ Page({
       },
       method:'post',
       success:function(res){
-        console.log(app.globalData.userid)
+        console.log(res.data)
         if(res.data.STATUS=="SUCCESS"){
           wx.showToast({
             title: '您已成功确认',

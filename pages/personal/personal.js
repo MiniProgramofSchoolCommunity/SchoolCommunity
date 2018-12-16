@@ -57,6 +57,11 @@ Page({
               url: '/pages/authentification_S/authentification_S',
             })
         }}
+        else if (res.data.STATUS=="SENTED"){
+          wx.showToast({
+            title: '您已发送请求',
+          })
+        }
         else {
           wx.showToast({
             title: '未知错误请重试',

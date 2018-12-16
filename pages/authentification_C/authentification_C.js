@@ -40,8 +40,14 @@ Page({
     //   idFlag: e.detail.value,
     // })
     // console.log(this.data.idFlag)
-    if(e.detail.value==0) this.data.level=0
-    else this.data.level=1
+    if(e.detail.value==0) {
+      this.data.level=0,
+      this.data.idFlag=0
+    }
+    else {
+      this.data.level=1,
+      this.data.idFlag = 1
+    }  
   },
   nameget:function(e){
     this.setData({

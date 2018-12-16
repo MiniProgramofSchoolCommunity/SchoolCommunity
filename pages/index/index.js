@@ -28,6 +28,9 @@ Page({
     }
    // console.log(that.data.searchPageNum)
   },
+  onPullDownRefresh:function(){
+    this.onLoad()
+  },
   onLoad: function () {
     var that = this;
     console.log("initial data:"+that.data.newInfo)
@@ -66,5 +69,9 @@ Page({
         console.log(res)
       }
     })
+    console.log("刷")
   },
+  onShow:function(){
+    this.onLoad
+  }
 })

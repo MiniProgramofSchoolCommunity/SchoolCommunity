@@ -79,10 +79,10 @@ Page({
         },
         method: 'post',
         success: function (res) {
+          console.log(res.data)
           if (res.data.STATUS == "SUCCESS") {    //if had identified
             wx.showToast({
-              title: '您已成功发布消息',
-              duration: 2000
+              title: '成功发布消息',
             })
             wx.navigateTo({
               url: '/pages/index/index',
@@ -91,13 +91,16 @@ Page({
           else if (res.data.STATUS == "FAILED") {
             wx.showToast({
               title: '数据库错误，请重试',
-              duration: 2000
             })
           }
           else if (res.data.STATUS == "NOPERMISSION") {
             wx.showToast({
-              title: '您尚未认证，请前往个人中心进行认证',
-              duration: 2000
+              title: '您尚未认证',
+            })
+          }
+          else if (res.data.STATUS == "SENTED") {
+            wx.showToast({
+              title: '认证尚未通过',
             })
           }
           else {
@@ -132,8 +135,7 @@ Page({
         success: function (res) {
           if (res.data.STATUS == "SUCCESS") {    //if had identified
             wx.showToast({
-              title: '您已成功发布消息',
-              duration: 2000
+              title: '成功发布消息',
             })
             wx.navigateTo({
               url: '/pages/index/index',
@@ -142,13 +144,16 @@ Page({
           else if (res.data.STATUS == "FAILED") {
             wx.showToast({
               title: '数据库错误，请重试',
-              duration: 2000
             })
           }
+          else if(res.data.STATUS == "SENTED") {
+        wx.showToast({
+          title: '认证尚未通过',
+        })
+      }
           else if (res.data.STATUS == "NOPERMISSION") {
             wx.showToast({
               title: '您尚未认证，请前往个人中心进行认证',
-              duration: 2000
             })
           }
           else {
@@ -162,7 +167,6 @@ Page({
     else{
       wx.showToast({
         title: '非法用户',
-        duration:2000
       })
     }
   },

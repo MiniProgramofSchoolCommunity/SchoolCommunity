@@ -17,10 +17,11 @@
     "pages/infoIdentify/infoIdentify"
   ],
   "window":{
-    "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Com&&Sponsor",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh":true,
+    "backgroundTextStyle": "dark"
   },
   "tabBar": {
     "color": "#666",

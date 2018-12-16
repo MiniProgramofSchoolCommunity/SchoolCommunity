@@ -8,6 +8,7 @@ Page({
     var that = this;
     var id=options.id;
     var atype=options.atype;
+    console.log(options)
     wx.request({
       url: 'http://localhost:80/activity/getActivityDetail.do',//todo
       data:{

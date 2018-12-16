@@ -93,6 +93,7 @@ Page({
         var infoList = [];
         if ((res.data.list.length == 10) && res.data.hasNextPage) {
           that.data.isFromSearch ? infoList = res.data.list : infoList = that.data.newInfo.concat(res.data.list);
+          
           that.setData({
             newInfo: infoList, //获取数据数组
             searchLoading: true   //把"上拉加载"的变量设为true，显示

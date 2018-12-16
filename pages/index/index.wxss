@@ -87,6 +87,4 @@ swiper.swiper {
 .info_detail{
   margin-left:10px;
 }
-.key{
-  size: 10px
-}
+

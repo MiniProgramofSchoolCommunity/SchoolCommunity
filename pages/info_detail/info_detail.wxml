@@ -8,7 +8,14 @@
     <text class="goods_price">{{"活动负责人："+detail_info.leaderName}}\n</text>
     <text class="goods_price">{{"活动负责人电话："+detail_info.leaderNum}}\n</text>
     <text class="goods_price">{{"活动等级："+detail_info.level}}\n</text>
-    <text class="goods_price">{{"活动需求："+detail_info.requirementOfSponsorship}}\n</text>
+    <view> 
+      <view wx:if="{{detail_info.type==0}}">
+        <text class="goods_price">{{"赞助需求："+detail_info.requirementOfSponsorship}}\n</text>
+      </view>
+      <view wx:if="{{detail_info.type==1}}">
+        <text class="goods_price">{{"赞助要求："+detail_info.requirementOfActivity}}\n</text>
+      </view>
+    </view> 
     <text class="goods_price">{{"活动时间："+time}}\n</text>
   </view>
 </view>

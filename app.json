@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/register/register",
     "pages/login/login",
+    "pages/register/register",
     "pages/release/release",
     "pages/releaseSposor/releaseSposor",
     "pages/superUser/superUser",
@@ -9,11 +9,9 @@
     "pages/roles/roles",
     "pages/authentification_C/authentification_C",
     "pages/authentification_S/authentification_S",
-    
     "pages/index/index",
     "pages/info_detail/info_detail",
     "pages/personal/personal",
-    
     "pages/logs/logs",
     "pages/hasRelease/hasRelease",
     "pages/infoIdentify/infoIdentify"

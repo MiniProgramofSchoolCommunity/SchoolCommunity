@@ -54,18 +54,16 @@ public class UserServicesImpl implements UserService {
         }
 
         Log user = userLogList.get(0);
-        userInfoCriteria.andUseridEqualTo(user.getUserid());
-        List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
-        UserInfo userInfo = userInfoList.get(0);
 
-        criteria.andPwdEqualTo(pwd);
-        long userLogStatus = logMapper.countByExample(userLogCriteria);
-        if (userLogStatus != 1) {
+        if (!user.getPwd().equals(pwd)) {
             status.put("STATUS", Status.PWDERROR.getName());
             status.put("TYPE", null);
             status.put("USERID", null);
             return status;
         } else {
+            userInfoCriteria.andUseridEqualTo(user.getUserid());
+            List<UserInfo> userInfoList = userInfoMapper.selectByExample(userInfoExample);
+            UserInfo userInfo = userInfoList.get(0);
             status.put("STATUS", Status.SUCCESS.getName());
             status.put("TYPE", userInfo.getRoleid().toString());
             status.put("USERID", user.getUserid().toString());
@@ -103,10 +101,9 @@ public class UserServicesImpl implements UserService {
             // this is only used for presentation
 
             Manage manage = new Manage();
-            if(userInfo.getRoleid() == 2){
+            if (userInfo.getRoleid() == 2) {
                 manage.setManageruserid((long) 2);
-            }
-            else {
+            } else {
                 manage.setManageruserid((long) 1);
             }
             manage.setInterviwee(userInfo.getUserid());

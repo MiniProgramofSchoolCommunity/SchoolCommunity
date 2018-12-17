@@ -133,27 +133,32 @@ public class ManageServiceImpl implements ManageService {
                             useridList.add(user.getUserid());
                         }
                     }
-                    corporationCriteria.andUseridIn(useridList);
-                    List<Corporation> corporationList = corporationMapper.selectByExample(corporationExample);
-                    corporationPageInfo = new PageInfo<>(corporationList);
-                    System.out.println(JSON.toJSONString(corporationPageInfo));
-                    corporationPageInfo.setEndRow(userInfoPageInfo.getEndRow());
-                    corporationPageInfo.setHasNextPage(userInfoPageInfo.isHasNextPage());
-                    corporationPageInfo.setHasPreviousPage(userInfoPageInfo.isHasPreviousPage());
-                    corporationPageInfo.setIsFirstPage(userInfoPageInfo.isIsFirstPage());
-                    corporationPageInfo.setIsLastPage(userInfoPageInfo.isIsLastPage());
-                    corporationPageInfo.setNavigateFirstPage(userInfoPageInfo.getNavigateFirstPage());
-                    corporationPageInfo.setNavigateLastPage(userInfoPageInfo.getNavigateLastPage());
-                    corporationPageInfo.setNavigatePages(userInfoPageInfo.getNavigatePages());
-                    corporationPageInfo.setNavigatepageNums(userInfoPageInfo.getNavigatepageNums());
-                    corporationPageInfo.setNextPage(userInfoPageInfo.getNextPage());
-                    corporationPageInfo.setPageNum(userInfoPageInfo.getPageNum());
-                    corporationPageInfo.setPageSize(userInfoPageInfo.getPageSize());
-                    corporationPageInfo.setPages(userInfoPageInfo.getPages());
-                    corporationPageInfo.setPrePage(userInfoPageInfo.getPrePage());
-                    corporationPageInfo.setSize(userInfoPageInfo.getSize());
-                    corporationPageInfo.setStartRow(userInfoPageInfo.getStartRow());
-                    corporationPageInfo.setTotal(userInfoPageInfo.getTotal());
+                    if (useridList.isEmpty()) {
+                        corporationPageInfo = null;
+                    } else {
+                        corporationCriteria.andUseridIn(useridList);
+                        List<Corporation> corporationList = corporationMapper.selectByExample(corporationExample);
+                        corporationPageInfo = new PageInfo<>(corporationList);
+                        System.out.println(JSON.toJSONString(corporationPageInfo));
+                        corporationPageInfo.setEndRow(userInfoPageInfo.getEndRow());
+                        corporationPageInfo.setHasNextPage(userInfoPageInfo.isHasNextPage());
+                        corporationPageInfo.setHasPreviousPage(userInfoPageInfo.isHasPreviousPage());
+                        corporationPageInfo.setIsFirstPage(userInfoPageInfo.isIsFirstPage());
+                        corporationPageInfo.setIsLastPage(userInfoPageInfo.isIsLastPage());
+                        corporationPageInfo.setNavigateFirstPage(userInfoPageInfo.getNavigateFirstPage());
+                        corporationPageInfo.setNavigateLastPage(userInfoPageInfo.getNavigateLastPage());
+                        corporationPageInfo.setNavigatePages(userInfoPageInfo.getNavigatePages());
+                        corporationPageInfo.setNavigatepageNums(userInfoPageInfo.getNavigatepageNums());
+                        corporationPageInfo.setNextPage(userInfoPageInfo.getNextPage());
+                        corporationPageInfo.setPageNum(userInfoPageInfo.getPageNum());
+                        corporationPageInfo.setPageSize(userInfoPageInfo.getPageSize());
+                        corporationPageInfo.setPages(userInfoPageInfo.getPages());
+                        corporationPageInfo.setPrePage(userInfoPageInfo.getPrePage());
+                        corporationPageInfo.setSize(userInfoPageInfo.getSize());
+                        corporationPageInfo.setStartRow(userInfoPageInfo.getStartRow());
+                        corporationPageInfo.setTotal(userInfoPageInfo.getTotal());
+                    }
+
                 } else {
                     corporationPageInfo = null;
                 }

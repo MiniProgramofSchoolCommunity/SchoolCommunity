@@ -33,7 +33,7 @@ public class BrowseServiceTest extends TestClass {
         activityBasicInfo.setActivityname("wht");
         activityBasicInfo.setActivityaddress("ymx");
         activityBasicInfo.setActivityintro("stt");
-        activityBasicInfo.setPublisherid((long) 1);
+        activityBasicInfo.setPublisherid((long) 7);
         activityBasicInfo.setType(0);
         Date date = new Date();
         activityBasicInfo.setDate(date);
